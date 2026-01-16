@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+body{
+  font-family: 'Cairo',sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --breakpoint-xs: 26rem;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-en : 'Merriweather',san-serif;
+  --font-ar : 'Cairo',san-serif;
+  
+  --color-p-color: hsl(211, 37%, 21%);
+  --color-s-color: hsl(206, 27%, 45%);
+  --color-n-color: hsl(197, 27%, 67%);
+  --color-bg-color: hsl(65, 54%, 86%);
+  --color-gr1: hsl(211, 37%, 21%);
+
+  --text-fluid: clamp(1.875rem, 1.878vw + 1.435rem, 3.125rem);
+  --text-dyTitle: clamp(3rem, 2.066vw + 2.516rem, 4.375rem);
+  --spacing-dyp: clamp(0.813rem, -0.491rem + 5.561vi, 4.375rem);
+
+  --animate-grade: grade 8s ease infinite;
+  --animate-blink: blink steps(1) infinite;
+  
+   @keyframes blink {
+    
+    100% {
+      /* border-color: transparent; */
+      opacity: 1;
+    }
+    50% {
+      /* border-color: orange; */
+      opacity: 0;
+    }
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @keyframes grade {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 }

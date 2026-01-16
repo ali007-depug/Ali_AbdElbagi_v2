@@ -1,0 +1,170 @@
+{
+  "loading": "Loading...",
+  "header": {
+    "name": "Ali AbdElbagi",
+    "jobTitle": "Front End Developer",
+    "menu": {
+      "home": "Home",
+      "about": "About",
+      "works": "Works",
+      "skills": "Skills",
+      "blog": "Blog"
+    },
+    "aria": {
+      "openMenu": "open menu",
+      "closeMenu": "close menu"
+    },
+    "avatarAlt": "avatar image"
+  },
+  "hero": {
+    "hi": "Hi",
+    "heading": "I'm Ali Abd-Elbagi",
+    "name": "I'm Ali",
+    "job": "Front-End Developer & Computer Engineer.",
+    "desc": "Interested in building web applications that provide value and save time and money.",
+    "btnText": "Let's Talk!",
+    "blogBtn": "Browse My Blog"
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "me": "I'm",
+    "name": "Ali",
+    "smallBreif": ", a Computer Engineer from Sudan who graduated from University of Gazira in 2025.",
+    "aboutTech": " My passion for technology started in childhood around 2008-2010 through activities like gaming, browsing the internet, and using platforms like Facebook & G9G . What began as simple fun sparked a deep interest in how technology works, which solidified by high school into a desire to pursue a computer-related field of study.",
+    "getInTouch": "See My Content On LinkedIn",
+    "btnStory": "Read My Full Story",
+    "techCard": "Passionate About Software",
+    "uOfG": "University of Gazira Graduate",
+    "workCard": "Collaborative In Teamwork",
+    "learnCard": "Dedicated Learner"
+  },
+  "myWorks": {
+    "title": "My Works",
+    "btnExplore": { "first": "Explore My All ", "second": "Works" },
+    "projects": {
+      "builtWith": "Built With",
+      "liveSite": "Live Site",
+      "code": "Code",
+      "viewProject": "view project",
+      "viewCode": "view code"
+    }
+  },
+  "mySkills": {
+    "title": "My Skills",
+    "btnNextLearning": "New Tech I'm Learning"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "I'm open to freelance work, collaborations, or just a friendly chat about tech. Feel free to reach out — I’ll reply as soon as I can.",
+    "getInTouch": "Get in Touch",
+    "via": "Via ",
+    "orVisit": "Or visit my other media accounts"
+  },
+  "aboutPage": {
+    "sidepanel": {
+      "greeting": "Hello I'm",
+      "name": "Ali",
+      "iamA": "I'm a:",
+      "roles": {
+        "webDev": "Web Developer 🖱️",
+        "engineer": "Computer Engineer 🖥️",
+        "writer": "Writer ✍️",
+        "reader": "Reader 📚"
+      }
+    },
+    "about": {
+      "title": "About Me",
+      "imageAlt": "Personal photo of Ali AbdElbagi",
+      "imageDate": "on: 23-7-2022",
+      "story": {
+        "title": "How my Story began?"
+      },
+      "technology": {
+        "title": "With Technology:",
+        "text": "My passion for technology began in my childhood, around 2008. I was fascinated by computers and spent many hours playing video games and browsing the internet. I enjoyed watching YouTube videos and talking to friends on social media platforms like Facebook and Twitter. At the time, it felt like fun—but in reality, it started a deep interest in how technology works. By the time I reached high school, I knew I wanted to study something related to computers."
+      },
+      "university": {
+        "title": "University & High School:",
+        "text": "In 2017, I took a big step and joined the University of Gezira, Faculty of Engineering and Technology, where I studied Computer Engineering. I started learning programming in high school, when we were taught the basics of Pascal and binary systems. Then in 2018, I wrote my first real lines of code using C++. Seeing the result of something I created was exciting—it confirmed that this is what I wanted to do."
+      },
+      "love": {
+        "title": "Falling in love with UI & Linux:",
+        "text": "In 2021, I discovered my real passion: building user interfaces. I realized I enjoy creating things people can actually see and use—designing layouts, building clean components, and making smooth user experiences. That same year, I switched from Windows to Linux, which made me more focused and comfortable while coding."
+      },
+      "frontend": {
+        "title": "With Frontend Development:",
+        "paragraphs": [
+          {
+            "before": "My journey into frontend development began in mid-2022, when I started learning HTML and CSS through YouTube — special thanks to",
+            "link": {
+              "text": "Osama Elzero’s channel",
+              "href": "https://www.youtube.com/channel/UCSNkfKl4cU-55Nm-ovsvOHQ"
+            },
+            "after": ". I started to understand design consistency and core layout concepts like Flexbox, Grid, and responsive design."
+          },
+          {
+            "before": "Over time, I focused on improving my CSS skills even further. I learned Sass and Tailwind CSS, which helped me build modern and scalable UIs much faster.",
+            "after": ""
+          },
+          {
+            "before": "Once I had a solid foundation in HTML and CSS, I moved on to learning JavaScript. I practiced through",
+            "link": {
+              "text": "Frontend Mentor",
+              "href": "https://www.frontendmentor.io/home"
+            },
+            "after": ", which helped me grow my skills using real-world designs."
+          },
+          {
+            "before": "I deepened my CSS knowledge through amazing channels like",
+            "link": {
+              "text": "Kevin Powell",
+              "href": "https://www.youtube.com/kevinpowell"
+            },
+            "after": "and blogs such as CSS-Tricks and Ahmed Shadeed’s blog."
+          },
+          {
+            "before": "In 2024, I began learning React.js from",
+            "link": {
+              "text": "Tarmmez Academy",
+              "href": "https://www.youtube.com/@tarmeez"
+            },
+            "after": ", which opened up a new world of reusable and scalable UI development."
+          },
+          {
+            "before": "Throughout this journey, I’ve built many projects that helped me grow as a frontend developer and improve my design, performance, and UX skills.",
+            "after": ""
+          }
+        ]
+      }
+    }
+  },
+  "worksPage": {
+    "works": {
+      "title": "My Works",
+      "description": "Here are some of the projects I've worked on — including personal, freelance, and frontend mentor challenges.",
+      "filters": {
+        "all": "All",
+        "personal": "Personal",
+        "frontend": "Frontend Mentor",
+        "freelancing": "Freelancing"
+      }
+    }
+  },
+  "skillsPage": {
+    "title": "My Skills",
+    "description": "I’ve worked with a variety of tools and technologies in real-world projects. Here’s a snapshot of what I use to design, build, and deploy frontend applications.",
+    "nextLevelTitle": "Next-Level Tools I’m Diving Into"
+  },
+  "blogPage": {
+    "title": "Articles",
+    "description": "Welcome to my blog where I share my thoughts, experiences, and tips on web development Programming and some tips about life, good reading! 😊",
+    "recentPosts": " Recent Articles ✍️",
+    "tags": "Tags",
+    "backToAllPosts": "Back to All Posts"
+  },
+  "errorPage": {
+    "defaultMsg": "Page Not Found",
+    "backToHome":" Back to Home Page"
+
+  }
+}
