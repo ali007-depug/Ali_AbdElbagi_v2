@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 interface TypeWritterProps {
-  keyy:string;
+  keyy?:string;
   texts:string;
   typingSpeed:number;
   infinite?:boolean;

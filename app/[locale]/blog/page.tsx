@@ -7,9 +7,9 @@ import PostWrapper from "@/app/ui/components/blog/PostWrapper";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params; // useTranslation
+  const { locale } = params; // useTranslation
 
   const t = await getTranslations({
     locale,

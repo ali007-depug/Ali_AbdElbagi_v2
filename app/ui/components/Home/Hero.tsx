@@ -15,6 +15,7 @@ export default function Hero() {
   const [showAboutMeScrollDown, setShowAboutMeScrollDown] = useState(true);
   const t = useTranslations();
   const params = useParams();
+  const locale = typeof params.locale === 'string' ? params.locale : 'ar';
   useEffect(() => {
     let scrollPosition = window.scrollY;
     console.log(scrollPosition);
@@ -56,7 +57,7 @@ export default function Hero() {
           <TypeWritter
             texts={t(`hero.heading`)}
             typingSpeed={100}
-            keyy={params.locale}
+            keyy={locale}
           />
         </h3>
         {/* JOB */}

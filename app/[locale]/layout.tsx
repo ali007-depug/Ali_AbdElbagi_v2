@@ -12,10 +12,10 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{locale: string}>;
 }) {
   // 1. Extract locale from URL params
-  const { locale } = await params;
+  const { locale } =  await params;
 
   // 2. Validate it's a supported locale
   if (!routing.locales.includes(locale as Locale)) {
