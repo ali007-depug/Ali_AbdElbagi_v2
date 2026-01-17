@@ -2,6 +2,7 @@ import About from "@/app/ui/components/AboutPage/About";
 import Sidepanel from "@/app/ui/components/SidePanel";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = "force-static";
 export default async function AboutMe({
   params,
 }: {
