@@ -3,6 +3,8 @@ import BackButton from "@/app/ui/components/blog/BackBtn";
 import { TbArrowBack } from "react-icons/tb";
 import { client } from "@/app/lib/contentful";
 import { getTranslations } from "next-intl/server";
+import getAllPosts from "@/app/actions/getAllPosts";
+export const dynamic = "force-static";
 
 export default async function Post({
   params,
@@ -20,7 +22,7 @@ export default async function Post({
   // Translation hook
   const t = await getTranslations({
     locale,
-    namespace: "blogPage"
+    namespace: "blogPage",
   });
   // Show loading spinner while data is being fetched
 
@@ -29,7 +31,6 @@ export default async function Post({
 
   return (
     <section className="text-center py-5 space-y-2 max-md:px-5  relative top-[76px] sm:max-md:top-[111px]">
-
       <BackButton
         backTo={`/blog`}
         btnText={t("backToAllPosts")}
@@ -57,5 +58,20 @@ export default async function Post({
         #{tag}
       </span>
     </section>
+  );
+}
+
+export async function generateStaticParams() {
+  // Fetch all blog slugs once
+  const entries = await client.getEntries({
+    content_type: "blog",
+    select: ["fields.slug"],
+  });
+
+  return entries.items.flatMap((item: any) =>
+    ["en-US", "ar"].map((locale) => ({
+      slug: item.fields.slug,
+      locale,
+    }))
   );
 }

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import PostWrapper from "@/app/ui/components/blog/PostWrapper";
 import BlogHeader from "@/app/ui/components/blog/BlogHeader";
 
-
+export const dynamic = "force-static";
 
 export default async function Page({
   params,
