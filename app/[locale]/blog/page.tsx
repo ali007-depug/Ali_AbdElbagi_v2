@@ -15,7 +15,7 @@ export default async function Page({
   return (
     <section className="mb-10 px-dyp py-5  relative top-[76px] sm:max-md:top-[111px]">
       <Suspense fallback={<p>Loading...</p>}>
-        <BlogHeader />
+        <BlogHeader locale={locale}/>
       </Suspense>
       {/* post + tags Wrapper */}
       <div className="flex max-lg:flex-col px- gap-5">
