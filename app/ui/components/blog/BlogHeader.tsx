@@ -1,11 +1,11 @@
-"use client";
-import { useTranslations } from "next-intl";
-export default function BlogHeader() {
-  // const t = await getTranslations({
-  //   namespace: "blogPage",
-  //   locale,
-  // });
-  const t = useTranslations("blogPage");
+import { getTranslations } from "next-intl/server";
+export default async function BlogHeader({ locale }: { locale: string }) {
+  
+  const t = await getTranslations({
+    namespace: "blogPage",
+    locale,
+  });
+
   return (
     <>
       <h1 className="text-3xl md:text-5xl mb-5 mx-auto text-center font-bold text-p-color">
