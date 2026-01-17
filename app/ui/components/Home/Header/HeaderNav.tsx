@@ -2,40 +2,31 @@ import ChangeLangButton from "./LangButton";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
 
 interface NavProp {
   isMenuOpen: boolean;
   toggleMenu: () => void;
 }
 
-export default function Nav({ isMenuOpen, toggleMenu, }: NavProp) {
-  const location = usePathname();
-  const params = useParams();
+const navLinks = [
+  { id: 0, link: "home" },
+  { id: 1, link: "about" },
+  { id: 2, link: "works" },
+  { id: 3, link: "skills" },
+  { id: 4, link: "blog" },
+];
 
-  
-  const navLinks = [
-    { id: 0, link: "home" },
-    { id: 1, link: "about" },
-    { id: 2, link: "works" },
-    { id: 3, link: "skills" },
-    { id: 4, link: "blog" },
-  ];
+export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
+  const pathname = usePathname();
 
-  const  t  = useTranslations();
-
+  const t = useTranslations();
   const links = navLinks.map((link) => {
     const isActive =
-      link.link === "blog"
-        ? location.startsWith(`/${params.locale}/blog`) 
-        : link.link === "home"
-        ? location === "/"
-        : location === `/${link.link}`;
+         link.link === "home"
+        ? pathname === "/"
+        : pathname === `/${link.link}`;
 
-    const to =
-      link.link === "home"
-        ? "/"
-        : `/${link.link}`;
+    const to = link.link === "home" ? "/" : `/${link.link}`;
 
     return (
       <li key={link.id}>
@@ -64,7 +55,7 @@ export default function Nav({ isMenuOpen, toggleMenu, }: NavProp) {
           isMenuOpen ? t("header.aria.closeMenu") : t("header.aria.openMenu")
         }
       >
-        {isMenuOpen ? <IoClose size={25}/> : <IoMenu size={25}/>}
+        {isMenuOpen ? <IoClose size={25} /> : <IoMenu size={25} />}
       </button>
 
       <ul
