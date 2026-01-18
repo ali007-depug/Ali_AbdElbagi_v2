@@ -1,3 +1,4 @@
+'use client';
 import { Fragment } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -24,13 +25,14 @@ export default function SkillsBadges({
     linux: "linux.webp",
     cli: "cli.webp",
     typeScript: "typeScript.webp",
+    nextjs: "nextJs.webp",
+
   };
   
   const upComingSkills = {
     nodeJs: "nodejs.webp",
     expressJs: "express.webp",
     mongoDb: "mongoDB.webp",
-    nextjs: "nextJs.webp",
   };
 
   return (

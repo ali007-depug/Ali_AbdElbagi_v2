@@ -1,9 +1,10 @@
-import TagsNav from "@/app/ui/components/blog/TagsNav";
 import { Suspense } from "react";
 import PostWrapper from "@/app/ui/components/blog/PostWrapper";
 import BlogHeader from "@/app/ui/components/blog/BlogHeader";
+import TagsWrapper from "@/app/ui/components/blog/TagsWrapper";
+import PostsSkeleton from "@/app/ui/components/blog/PostsSkeleton";
 
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 export default async function Page({
   params,
@@ -21,21 +22,14 @@ export default async function Page({
       <div className="flex max-lg:flex-col px- gap-5">
         {/*posts section wrapper */}
         <article className="space-y-4 mt-4 w-full basis-[80%] min-h-[80dvh] text-center bg-p-color sm:px-3 sm:py-2 rounded-lg  max-lg:order-2">
-          <Suspense fallback={<h4>Loading posts...</h4>}>
+          <Suspense fallback={<PostsSkeleton/>}>
             {/* Render all blog posts */}
             <PostWrapper locale={locale} />
           </Suspense>
         </article>
 
         {/* Tags sidebar */}
-        <div className="flex flex-col gap-2 lg:basis-[25%]  p-5 bg-p-color rounded-lg h-fit mt-4 lg:sticky lg:top-20 lg:self-start ">
-          {/* Tag title */}
-          {/* <h3 className="text-xl font-semibold mb-4 text-white">{t("tags")}</h3> */}
-          {/* Tags */}
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2">
-            <TagsNav locale={locale} />
-          </div>
-        </div>
+        <TagsWrapper locale={locale} />
       </div>
     </section>
   );

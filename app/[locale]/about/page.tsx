@@ -1,14 +1,14 @@
 import About from "@/app/ui/components/AboutPage/About";
 import Sidepanel from "@/app/ui/components/SidePanel";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export const dynamic = "force-static";
 export default async function AboutMe({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ namespace: "aboutPage", locale });
   return (
     <section className="px-dyp py-5 md:py  relative top-[76px] sm:max-md:top-[111px]  bg-p-color">

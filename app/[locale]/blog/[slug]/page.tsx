@@ -3,13 +3,12 @@ import BackButton from "@/app/ui/components/blog/BackBtn";
 import { TbArrowBack } from "react-icons/tb";
 import { client } from "@/app/lib/contentful";
 import { getTranslations } from "next-intl/server";
-import getAllPosts from "@/app/actions/getAllPosts";
 export const dynamic = "force-static";
 
 export default async function Post({
   params,
 }: {
-  params: { slug: string; locale: string };
+  params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
   // Fetch blog post data using custom hook
@@ -66,6 +65,7 @@ export async function generateStaticParams() {
   const entries = await client.getEntries({
     content_type: "blog",
     select: ["fields.slug"],
+    limit: 7
   });
 
   return entries.items.flatMap((item: any) =>
@@ -75,3 +75,5 @@ export async function generateStaticParams() {
     }))
   );
 }
+
+export const dynamicParams = true; // This means "Generate them on-demand when visited"

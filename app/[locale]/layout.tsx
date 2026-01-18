@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Locale, routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { cairo } from "../ui/fonts";
 import Header from "../ui/components/Home/Header/Header";
 import Contact from "../ui/components/Home/Contact/Contact";
@@ -17,6 +17,9 @@ export default async function LocaleLayout({
   // 1. Extract locale from URL params
   const { locale } =  await params;
 
+    // for static route
+  setRequestLocale(locale);
+
   // 2. Validate it's a supported locale
   if (!routing.locales.includes(locale as Locale)) {
     notFound(); // Show 404 if invalid locale
@@ -24,7 +27,6 @@ export default async function LocaleLayout({
 
   // 3. Load messages for this locale
   const messages = await getMessages();
-
   // 4. Render with proper locale
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>

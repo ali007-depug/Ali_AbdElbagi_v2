@@ -1,13 +1,12 @@
 import { TbArrowBack } from "react-icons/tb";
 import { getTranslations } from "next-intl/server";
 import BackButton from "@/app/ui/components/blog/BackBtn";
-import getPostTags from "@/app/actions/getPostTags";
-import Posts from "@/app/ui/components/blog/Posts";
+import TagsArticles from "@/app/ui/components/blog/tagsPage/TagsArticles";
 
 export default async function page({
   params,
 }: {
-  params: { tag: string; locale: string };
+  params: Promise<{ tag: string; locale: string }>;
 }) {
   const { tag, locale } = await params;
 
@@ -15,8 +14,6 @@ export default async function page({
     locale,
     namespace: "blogPage",
   });
-  // Fetch posts that have the specified tag
-  const posts = await getPostTags(tag, locale);
 
   // Handle case where no posts are found for the given tag
 
@@ -32,11 +29,11 @@ export default async function page({
         btnText={t("backToAllPosts")}
         icon={<TbArrowBack />}
         customStyle="mx-auto text-bold text-base md:text-lg text-p-color hover:text-sky-500"
-      />{" "}
+      />
       {/* Render all posts with the specified tag */}
       <article className="space-y-4 mt-4 w-full min-h-fit text-center bg-p-color sm:px-8 sm:py-4 rounded-lg  max-md:order-2">
         {/* Render all blog posts */}
-        <Posts data={posts} />
+        <TagsArticles tag={tag} locale={locale} />
       </article>
     </section>
   );
