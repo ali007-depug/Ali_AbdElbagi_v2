@@ -1,6 +1,7 @@
 import NextLevel from "@/app/ui/components/skillPage/NextLevel";
 import SkillHeader from "@/app/ui/components/skillPage/skillHeader";
 import SkillsBadges from "@/app/ui/components/SkillsBadges";
+export const dynamic = 'force-static'
 export default async function MySkills({
   params
 }: {
