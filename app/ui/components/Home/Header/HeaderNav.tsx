@@ -23,7 +23,7 @@ export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
   const links = navLinks.map((link) => {
     const isActive =
          link.link === "home"
-        ? pathname === "/"
+        ? pathname === "/" : link.link === "blog" ? pathname.startsWith(`/blog`)
         : pathname === `/${link.link}`;
 
     const to = link.link === "home" ? "/" : `/${link.link}`;

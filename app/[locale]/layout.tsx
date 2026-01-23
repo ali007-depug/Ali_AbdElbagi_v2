@@ -22,7 +22,7 @@ type Props = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const locale =  params?.locale ?? "ar"; 
+  const locale = await (params)?.locale ?? "ar"; 
 
   const isArabic = locale === "ar";
 
