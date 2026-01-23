@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "arabic-reshaper": "^1.1.0",
     "contentful-cli": "^3.10.2",
     "contentful-ts-type-generator": "github:arimkevi/contentful-ts-type-generator",
     "framer-motion": "^12.24.12",

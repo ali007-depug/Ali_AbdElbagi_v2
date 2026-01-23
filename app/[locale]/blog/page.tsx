@@ -3,8 +3,68 @@ import PostWrapper from "@/app/ui/components/blog/PostWrapper";
 import BlogHeader from "@/app/ui/components/blog/BlogHeader";
 import TagsWrapper from "@/app/ui/components/blog/TagsWrapper";
 import PostsSkeleton from "@/app/ui/components/blog/PostsSkeleton";
+import type { Metadata } from "next";
 
-// export const dynamic = "force-static";
+type Props = {
+  params: {
+    locale: "ar" | "en-US";
+  };
+};
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const locale = await (params).locale ?? "ar";
+  const isArabic = locale === "ar";
+
+  return {
+    title: isArabic
+      ? "المدونة"
+      : "Blog ",
+
+    description: isArabic
+      ? "مقالات ودروس تقنية يكتبها علي عبدالباقي حول تطوير الويب" 
+      : "Articles and technical tutorials by Ali AbdElbagi about web development",
+
+    alternates: {
+      canonical: `/${locale}/blog`,
+      languages: {
+        ar: "/ar/blog",
+        en: "/en-US/blog",
+      },
+    },
+
+    openGraph: {
+      title: isArabic
+        ? "مدونة علي عبدالباقي"
+        : "Ali AbdElbagi Blog",
+
+      description: isArabic
+        ? "مقالات تقنية حول تطوير الويب"
+        : "Technical articles about web development",
+
+      url: `/${locale}/blog`,
+      type: "website",
+
+      images: [
+        {
+          url: `/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: isArabic
+            ? "مدونة علي عبدالباقي"
+            : "Ali AbdElbagi blog",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      images: [`/${locale}/opengraph-image`],
+    },
+  };
+}
+
 
 export default async function Page({
   params,

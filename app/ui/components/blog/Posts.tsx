@@ -1,7 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-export default async function Posts({ data }:any) {
 
+export default async function Posts({ data }:any) {
   return data.map((post: any, index: number) => (
     <div
       key={post.sys.id} // Use Contentful system ID as unique key

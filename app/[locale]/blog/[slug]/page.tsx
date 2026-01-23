@@ -3,6 +3,58 @@ import BackButton from "@/app/ui/components/blog/BackBtn";
 import { TbArrowBack } from "react-icons/tb";
 import { client } from "@/app/lib/contentful";
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+type Props = {
+  params: {
+    locale: "ar" | "en-US";
+    slug: string;
+  };
+};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale } = await params;
+  const isArabic = locale === "ar";
+
+  const post = await client.getEntries({
+    content_type: "blog",
+    "fields.slug": slug,
+    limit: 1,
+    locale,
+  });
+    const { title, description } = post.items[0]?.fields as any;
+
+  return {
+    title: isArabic ? `${title}` : `${title}`,
+
+    description: description,
+
+    alternates: {
+      canonical: `/${locale}/blog/${slug}`,
+      languages: {
+        ar: `/ar/blog/${slug}`,
+        en: `/en-US/blog/${slug}`,
+      },
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      type: "article",
+      url: `/${locale}/blog/${slug}`,
+      images: [
+        {
+          url: `/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [`/${locale}/opengraph-image`],
+    },
+  };
+}
+
 export const dynamic = "force-static";
 
 export default async function Post({
@@ -65,14 +117,14 @@ export async function generateStaticParams() {
   const entries = await client.getEntries({
     content_type: "blog",
     select: ["fields.slug"],
-    limit: 7
+    limit: 7,
   });
 
   return entries.items.flatMap((item: any) =>
     ["en-US", "ar"].map((locale) => ({
       slug: item.fields.slug,
       locale,
-    }))
+    })),
   );
 }
 
