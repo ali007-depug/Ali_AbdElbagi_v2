@@ -43,25 +43,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
 
-    // openGraph: {
-    //   title: isArabic ? "علي عبدالباقي" : "Ali AbdElbagi",
-    //   description: isArabic
-    //     ? "الموقع الشخصي لعلي عبدالباقي"
-    //     : "Ali AbdElbagi personal website",
-    //   url: isArabic ? `${SITE_URL}/ar` : `${SITE_URL}/en-US`,
-    //   siteName: "Ali AbdElbagi",
-    //   locale: isArabic ? "ar" : "en_US",
-    //   alternateLocale: ["ar", "en_US"],
-    //   type: "website",
-    //   images: [
-    //     {
-    //       url: "/opengraph-image",
-    //       width: 1200,
-    //       height: 630,
-    //       alt: "Ali AbdElbagi",
-    //     },
-    //   ],
-    // },
+    openGraph: {
+      title: isArabic ? "علي عبدالباقي" : "Ali AbdElbagi",
+      description: isArabic
+        ? "الموقع الشخصي لعلي عبدالباقي"
+        : "Ali AbdElbagi personal website",
+      url: isArabic ? `${SITE_URL}/ar` : `${SITE_URL}/en-US`,
+      siteName: "Ali AbdElbagi",
+      locale: isArabic ? "ar" : "en_US",
+      alternateLocale: ["ar", "en_US"],
+      type: "website",
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Ali AbdElbagi",
+        },
+      ],
+    },
 
     twitter: {
       card: "summary_large_image",
