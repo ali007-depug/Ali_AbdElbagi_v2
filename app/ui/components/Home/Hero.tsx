@@ -84,7 +84,7 @@ export default function Hero() {
           {/* blog button */}
           <CTAButton
             isLink={false}
-            to={`/${params.locale}/blog`}
+            to={`/blog`}
             action={t("hero.blogBtn")}
             icon={
               <MdArticle className=" self-center ms-2" size={25} color="#eee" />

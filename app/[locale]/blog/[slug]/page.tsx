@@ -4,12 +4,13 @@ import { TbArrowBack } from "react-icons/tb";
 import { client } from "@/app/lib/contentful";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: "ar" | "en-US";
     slug: string;
-  };
+  }>;
 };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
@@ -63,6 +64,7 @@ export default async function Post({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
+  
   // Fetch blog post data using custom hook
   const post = await client.getEntries({
     content_type: "blog",
@@ -76,10 +78,12 @@ export default async function Post({
     namespace: "blogPage",
   });
   // Show loading spinner while data is being fetched
+  if(post.items[0]?.fields.title===undefined){
+    notFound();
+  }
 
   // Destructure post fields
   const { title, description, content, tag } = post.items[0]?.fields as any;
-
   return (
     <section className="text-center py-5 space-y-2 max-md:px-5  relative top-[76px] sm:max-md:top-[111px]">
       <BackButton

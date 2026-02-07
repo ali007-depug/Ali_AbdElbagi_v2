@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Locale, routing } from "@/i18n/routing";
@@ -7,22 +6,20 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { cairo } from "../ui/fonts";
 import Header from "../ui/components/Home/Header/Header";
 import Contact from "../ui/components/Home/Contact/Contact";
-import {ProjcetsProvider} from "../context/ProjectContext"
+import { ProjcetsProvider } from "../context/ProjectContext";
 
 const SITE_URL = "https://ali-abd-elbagi-v2.vercel.app/";
 
 type Props = {
   children: React.ReactNode;
-  params?: { locale?: "ar" | "en" };
+  params: Promise<{ locale: string }>;
 };
 
 /**
  * Dynamic SEO based on locale
  */
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const locale = await (params)?.locale ?? "ar"; 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
 
   const isArabic = locale === "ar";
 
@@ -31,8 +28,7 @@ export async function generateMetadata(
 
     title: {
       default: isArabic ? "علي عبدالباقي" : "Ali AbdElbagi",
-      template: 
-         "%s | Ali AbdElbagi",
+      template: "%s | Ali AbdElbagi",
     },
 
     description: isArabic
@@ -74,14 +70,14 @@ export async function generateMetadata(
         ? "الموقع الشخصي لعلي عبدالباقي"
         : "Ali AbdElbagi personal website",
       // images: ["/opengraph-image"],
-            images: [`/${locale}/opengraph-image`],
-
+      images: [`/${locale}/opengraph-image`],
     },
 
     robots: {
       index: true,
       follow: true,
     },
+    
   };
 }
 
@@ -90,12 +86,12 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }) {
   // 1. Extract locale from URL params
-  const { locale } =  await params;
+  const { locale } = await params;
 
-    // for static route
+  // for static route
   setRequestLocale(locale);
 
   // 2. Validate it's a supported locale
@@ -108,13 +104,13 @@ export default async function LocaleLayout({
   // 4. Render with proper locale
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+      <link rel="icon" href="favicon.ico"  />
+
       <body className={`${cairo} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <Header/>
-          <ProjcetsProvider>
-          {children}
-          </ProjcetsProvider>
-          <Contact/>
+          <Header />
+          <ProjcetsProvider>{children}</ProjcetsProvider>
+          <Contact />
         </NextIntlClientProvider>
       </body>
     </html>

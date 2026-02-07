@@ -111,7 +111,7 @@
             "link": {
               "text": "Frontend Mentor",
               "href": "https://www.frontendmentor.io/home"
-            },
+          },
             "after": "الذي ساعدني على تطوير مهاراتي باستخدام تصاميم حقيقية."
           },
           {
@@ -164,7 +164,8 @@
   },
   "errorPage":{
     "defaultMsg":"هذه الصفحة غير موجودة",
-    "backToHome":"العودة للصفحة الرئيسية"
+    "backToHome":"العودة للصفحة الرئيسية",
+    "back":" العودة  "
     
   }
 }

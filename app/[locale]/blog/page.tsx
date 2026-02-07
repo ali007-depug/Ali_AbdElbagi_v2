@@ -6,15 +6,15 @@ import PostsSkeleton from "@/app/ui/components/blog/PostsSkeleton";
 import type { Metadata } from "next";
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: "ar" | "en-US";
-  };
+  }>;
 };
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const locale = await (params).locale ?? "ar";
+  const {locale} = await params;
   const isArabic = locale === "ar";
 
   return {
