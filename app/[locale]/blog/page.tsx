@@ -74,7 +74,7 @@ export default async function Page({
   const { locale } = await params;
 
   return (
-    <section className="mb-10 px-dyp py-5  relative top-[76px] sm:max-md:top-[111px]">
+    <section className="mb-10 px-dyp py-5  relative top-19 sm:max-md:top-27.75">
       <Suspense fallback={<p>Loading...</p>}>
         <BlogHeader locale={locale}/>
       </Suspense>

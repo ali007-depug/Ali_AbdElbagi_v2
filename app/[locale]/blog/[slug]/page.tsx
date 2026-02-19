@@ -12,49 +12,6 @@ type Props = {
     slug: string;
   }>;
 };
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, locale } = await params;
-  const isArabic = locale === "ar";
-
-  const post = await client.getEntries({
-    content_type: "blog",
-    "fields.slug": slug,
-    limit: 1,
-    locale,
-  });
-    const { title, description } = post.items[0]?.fields as any;
-
-  return {
-    title: isArabic ? `${title}` : `${title}`,
-
-    description: description,
-
-    alternates: {
-      canonical: `/${locale}/blog/${slug}`,
-      languages: {
-        ar: `/ar/blog/${slug}`,
-        en: `/en-US/blog/${slug}`,
-      },
-    },
-    openGraph: {
-      title: title,
-      description: description,
-      type: "article",
-      url: `/${locale}/blog/${slug}`,
-      images: [
-        {
-          url: `/${locale}/opengraph-image`,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      images: [`/${locale}/opengraph-image`],
-    },
-  };
-}
 
 export const dynamic = "force-static";
 
@@ -85,7 +42,7 @@ export default async function Post({
   // Destructure post fields
   const { title, description, content, tag } = post.items[0]?.fields as any;
   return (
-    <section className="text-center py-5 space-y-2 max-md:px-5  relative top-[76px] sm:max-md:top-[111px]">
+    <section className="text-center py-5 space-y-2 max-md:px-5  relative top-19 sm:max-md:top-27.75">
       <BackButton
         backTo={`/blog`}
         btnText={t("backToAllPosts")}
@@ -133,3 +90,50 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true; // This means "Generate them on-demand when visited"
+
+
+// meta data
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale } = await params;
+  const isArabic = locale === "ar";
+
+  const post = await client.getEntries({
+    content_type: "blog",
+    "fields.slug": slug,
+    limit: 1,
+    locale,
+  });
+    const { title, description } = post.items[0]?.fields as any;
+
+  return {
+    title: isArabic ? `${title}` : `${title}`,
+
+    description: description,
+
+    alternates: {
+      canonical: `/${locale}/blog/${slug}`,
+      languages: {
+        ar: `/ar/blog/${slug}`,
+        en: `/en-US/blog/${slug}`,
+      },
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      type: "article",
+      url: `/${locale}/blog/${slug}`,
+      images: [
+        {
+          url: `/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [`/${locale}/opengraph-image`],
+    },
+  };
+}
+
