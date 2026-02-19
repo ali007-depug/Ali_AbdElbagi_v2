@@ -77,7 +77,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       index: true,
       follow: true,
     },
-    
   };
 }
 
@@ -104,8 +103,11 @@ export default async function LocaleLayout({
   // 4. Render with proper locale
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <link rel="icon" href="favicon.ico"  />
-
+      <link rel="icon" href="favicon.ico" />
+      <meta
+        name="google-site-verification"
+        content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
+      />
       <body className={`${cairo} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
