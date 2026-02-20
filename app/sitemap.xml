@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/about</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/works</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/skills</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/how-browsers-works</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/web-performance</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/about-work-and-hope</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/tags/Web-Development</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/tags/Performance</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ali-abd-elbagi-v2.vercel.app/en-US/blog/tags/Advices</loc>
+  <lastmod>2026-02-19T15:04:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
