@@ -12,7 +12,7 @@ type Props = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const locale =await  params.locale ?? "ar";
+  const {locale} = await (params) ?? "ar";
   const isArabic = locale === "ar";
 
   return {
@@ -72,7 +72,7 @@ export default async function MySkills({
 }) {
   const { locale } = await params;
   return (
-    <section className="px-dyp py-5 md:py  relative top-[76px] sm:max-md:top-[111px] bg-p-color">
+    <section className="px-dyp py-5 md:py  relative top-19 sm:max-md:top-27.75 bg-p-color">
       <SkillHeader locale={locale} />
       {/* skill badges */}
       <SkillsBadges isLearntSkills={true} bg={"bg-sky-900"} />
