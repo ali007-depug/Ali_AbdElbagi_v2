@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     title: {
       default: isArabic ? "علي عبدالباقي" : "Ali AbdElbagi",
-      template: "%s | Ali AbdElbagi",
+      template: isArabic ? "%s | علي عبد الباقي": "%s | Ali AbdElbagi",
     },
 
     description: isArabic
