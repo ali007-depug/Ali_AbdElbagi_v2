@@ -67,7 +67,7 @@ export default async function AboutMe({
   setRequestLocale(locale);
   const t = await getTranslations({ namespace: "aboutPage", locale });
   return (
-    <section className="px-dyp py-5 md:py  relative top-[76px] sm:max-md:top-[111px]  bg-p-color">
+    <section className="px-dyp py-5 md:py  relative top-19 sm:max-md:top-27.75  bg-p-color">
       {/* Section title */}
       <h1 className="text-dyTitle mx-auto w-fit font-bold text-white mb-5">
         {t("about.title")}
