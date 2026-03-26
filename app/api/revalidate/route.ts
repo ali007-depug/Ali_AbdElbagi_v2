@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   try {
     // This will purge the cache for your blog list
     // You can also use revalidateTag('posts') if you tagged your fetch
-    revalidatePath('/[locale]/blog', 'layout'); 
+    revalidatePath('/', 'layout'); 
     
     return NextResponse.json({ revalidated: true, now: Date.now() });
   } catch (err) {
