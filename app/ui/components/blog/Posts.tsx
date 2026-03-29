@@ -26,6 +26,7 @@ export default async function Posts({ data }:any) {
               {post.fields.description}
             </p>
           </div>
+          
 
           {/* Publication date */}
           <p className="text-gray-100 text-sm">🗓️ {post.fields.date}</p>

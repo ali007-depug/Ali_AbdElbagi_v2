@@ -5,6 +5,16 @@ import rehypeRaw from "rehype-raw";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 
 import vscDarkPlus from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
+import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx";
+import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
+import javascript from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
+
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("css", css);
+
 import Image from "next/image";
 
 /**
@@ -25,7 +35,7 @@ export default function MarkdownRendering({ content }: { content: string }) {
   // to absolute HTTPS URLs for proper loading
   const fixedContent = content.replace(
     /\!\[(.*?)\]\(\/\/(.*?)\)/g,
-    "![$1](https://$2)"
+    "![$1](https://$2)",
   );
 
   return (
@@ -133,72 +143,58 @@ export default function MarkdownRendering({ content }: { content: string }) {
   );
 }
 
-/**
- * CodeBlock Component
- *
- * Renders code blocks with syntax highlighting and copy-to-clipboard functionality.
- * Handles both inline code (single backticks) and code blocks (triple backticks).
- *
- * @param {Object} props - Component props
- * @param {boolean} props.inline - Whether the code is inline (single backticks)
- * @param {string} props.className - CSS class name, contains language info for code blocks
- * @param {ReactNode} props.children - The code content to display
- * @returns {JSX.Element} Rendered code block or inline code
- */
-function CodeBlock({ inline, className, children }: any) {
-  // State to track if code has been copied to clipboard
+function CodeBlock({ className, children, ...props }: any) {
   const [copied, setCopied] = useState(false);
 
-  // Extract programming language from className (format: language-xxxx)
-  // Example: className="language-javascript" -> extracts "javascript"
+  // Check if it's a code block (has a language class) or inline code
   const match = /language-(\w+)/.exec(className || "");
   const language = match ? match[1] : "";
+  const isInline = !match; // If no language match, it's inline code
 
-  // Remove trailing newline from code text for cleaner display
   const codeText = String(children).replace(/\n$/, "");
 
-  /**
-   * Copies the code text to the user's clipboard
-   * Shows feedback by setting copied state for 2 seconds
-   */
   const copyToClipboard = () => {
     navigator.clipboard.writeText(codeText);
     setCopied(true);
-    // Reset copied status after 2 seconds
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Render inline code (single backticks in markdown)
-  if (inline) {
-    return <code className="bg-gray-200 rounded px-1 py-0.5">{children}</code>;
+  if (isInline) {
+    return (
+      <code
+        className="bg-gray-200 rounded px-1 py-0.5 text-p-color font-mono"
+        {...props}
+      >
+        {children}
+      </code>
+    );
   }
 
-  // Render code block with syntax highlighting (triple backticks in markdown)
   return (
-    <div className="relative group my-4">
-      {/* Copy button - appears on hover */}
+    <div className="relative group my-4 font-mono">
       <button
         onClick={copyToClipboard}
-        className="absolute top-2 right-2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity [direction:rtl]"
-        aria-label="Copy code to clipboard"
+        className="absolute top-2 right-2 z-10 bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
       >
         {copied ? "Copied!" : "Copy"}
       </button>
 
-      {/* Language label - appears on hover */}
-      <span className="block absolute top-2 left-2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-        {language}
-      </span>
+      {language && (
+        <span className="absolute top-2 left-2 z-10 bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded">
+          {language}
+        </span>
+      )}
 
-      {/* SyntaxHighlighter component for code formatting */}
       <SyntaxHighlighter
-        language={language} // Programming language for syntax highlighting
-        style={vscDarkPlus} // VS Code Dark Plus color theme
-        showLineNumbers // Show line numbers for better code readability
+        {...props}
+        style={vscDarkPlus}
+        language={language}
+        PreTag="div" // Important: prevents nested <pre> tags which break styling
+        showLineNumbers
         customStyle={{
-          borderRadius: "8px", // Rounded corners for the code block
-          padding: "30px 15px", // Ample padding for code content
-          fontSize: "20px", // Larger font size for better readability
+          borderRadius: "8px",
+          padding: "40px 15px 15px 15px", // Top padding increased for the labels
+          fontSize: "16px", // 20px is quite large for code; 16px is usually better for UI
         }}
       >
         {codeText}
