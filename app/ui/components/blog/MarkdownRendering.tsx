@@ -101,17 +101,20 @@ export default function MarkdownRendering({ content }: { content: string }) {
           hr: () => <hr className="my-6 border-t-2 border-p-color" />,
           // Custom image component to handle protocol-relative URLs
           img: ({ src, alt }) => {
-            if (!src) {
-              return <div>Image not available</div>;
-            }
+            if (!src || typeof src !== "string") return null;
 
-            // ❗ Block Blob (Next/Image does not support it)
-            if (typeof src !== "string") {
-              return <div>Image not supported</div>;
-            }
+            // Modern way to handle the URL without triggering legacy parsers
+            const getSafeSrc = (urlStr: string) => {
+              if (urlStr.startsWith("//")) return `https:${urlStr}`;
+              try {
+                // This uses the modern WHATWG URL API
+                return new URL(urlStr).toString();
+              } catch {
+                return urlStr;
+              }
+            };
 
-            const fixedSrc = src.startsWith("//") ? `https:${src}` : src;
-
+            const fixedSrc = getSafeSrc(src);
             return (
               <Image
                 src={fixedSrc}

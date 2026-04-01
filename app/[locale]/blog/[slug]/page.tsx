@@ -30,6 +30,7 @@ export default async function Post({
     locale,
     include: 2,
   });
+  console.log(`Searching for slug: ${slug} in locale: ${locale}. Found: ${post.items.length} items.`);
   // Translation hook
   const t = await getTranslations({
     locale,
@@ -43,7 +44,6 @@ export default async function Post({
   // Destructure post fields
   const { title, description, content, tag, author } = post.items[0]
     ?.fields as any;
-  console.log(author);
   return (
     <section className="text-center py-5 space-y-2 max-md:px-5  relative top-19 sm:max-md:top-27.75">
       <BackButton
@@ -148,7 +148,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isArabic = locale === "ar";
 
   const { title, description, media } = post.items[0]?.fields as any;
-  const imageUrl = `https:${media.fields.file.url}`;
+  const imageUrl = `https:${media.fields?.file.url}`;
+
 
   return {
     title: isArabic ? `${title}` : `${title}`,
