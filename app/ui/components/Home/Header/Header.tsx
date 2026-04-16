@@ -55,7 +55,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3 ">
             <Image
               className="size-10 object-cover rounded-full"
-              src="/avatar.webp"
+              src="/me11.webp"
               alt={t(`header.avatarAlt`)}
               width={50}
               height={50}

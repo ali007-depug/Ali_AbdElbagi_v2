@@ -31,11 +31,11 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", scroll);
   }, []);
   return (
-    <section className="px-4 relative min-h-screen max-lg:top-[70px] sm:max-md:top-[111px] pt-4 -20 text-center font-extrabold z-10 rounded-xl md:flex md:gap-15 md:justify-evenly lg:justify-between ">
+    <section className="px-4 relative min-h-screen max-lg:top-17.5 sm:max-md:top-27.75 pt-4 -20 text-center font-extrabold z-10 rounded-xl md:flex md:gap-15 md:justify-evenly lg:justify-between ">
       {/* <div className="relative z-10 p-6 rounded-xl md:flex md:justify-between"> */}
       {/* Hero img */}
       <Image
-        src={"/me.webp"}
+        src={"/me2.webp"}
         width={280}
         height={280}
         alt="face of the website developer"
