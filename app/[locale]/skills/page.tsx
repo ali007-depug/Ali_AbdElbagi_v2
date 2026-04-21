@@ -14,7 +14,7 @@ const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const {locale} = await (params) ?? "ar";
+  const {locale} = (params) ?? "ar";
   const isArabic = locale === "ar";
 
   return {

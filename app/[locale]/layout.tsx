@@ -42,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: isArabic ? "/ar" : "/en-US",
       languages: {
         ar: "/ar",
-        en: "/en-US",
+        "en-US": "/en-US",
+        "x-default": "/en-US", 
       },
     },
 
@@ -72,7 +73,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: isArabic
         ? "الموقع الشخصي لعلي عبدالباقي"
         : "Ali AbdElbagi personal website",
-      // images: ["/opengraph-image"],
       images: [`/${locale}/opengraph-image`],
     },
 
