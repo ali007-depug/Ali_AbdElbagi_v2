@@ -32,20 +32,22 @@ export default function Hero() {
   }, []);
   return (
     <section className="px-4 relative min-h-screen max-lg:top-17.5 sm:max-md:top-27.75 pt-4 -20 text-center font-extrabold z-10 rounded-xl md:flex md:gap-15 md:justify-evenly lg:justify-between ">
-      {/* <div className="relative z-10 p-6 rounded-xl md:flex md:justify-between"> */}
-      {/* Hero img */}
-      <Image
-        src={"/me2.webp"}
-        width={280}
-        height={280}
-        alt="face of the website developer"
-        loading="eager"
-        fetchPriority="high"
-        className={`shadow-md shadow-s-color w-60 md:w-70 md:h-70 lg:w-100 lg:h-100 rounded-full lg:mx-auto my-auto max-md:mx-auto 
-            transition-opacity duration-700 ease-in-out border border-accent  
-            `}
-      />
-
+     <div className="relative group lg:mx-auto my-auto max-md:mx-auto">
+  {/* Decorative Background Ring */}
+  <div className="absolute -inset-2 bg-gradient-to-tr from-sky-400 to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+  
+  <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-98 lg:h-98 overflow-hidden rounded-full border-4 border-white shadow-2xl">
+    <Image
+      src={"/hero2.webp"}
+      fill // Uses absolute positioning to fill the container perfectly
+      alt="Ali Abd-Elbagi"
+      loading="eager"
+      priority
+      sizes="(max-width: 768px) 256px, (max-width: 1024px) 288px, 384px"
+      className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+</div>
       {/* Hero text */}
       <div className="md:w-1/2 @container md:text-start md:flex md:justify-center md:flex-col">
         {/* HI */}

@@ -1,11 +1,10 @@
-'use client'
+"use client";
 /**
  * ----- This us Context used to  : -------
  * Provide componets with selected catgeroy & set func to selected category & func to fileterd projects based on the selected category
  */
 
 import { createContext, useContext, useState } from "react";
-
 
 // my work items
 const worksItems = [
@@ -23,6 +22,8 @@ const worksItems = [
       TypeScript: "typeScript.webp",
       tailwind: "tailwindCss.webp",
       vite: "vite.svg",
+      shadcn: "shadcn.webp",
+      firebase: "firebase.webp",
     },
   },
   {
@@ -90,14 +91,15 @@ const worksItems = [
     title: "7essAbAt - حسابات",
     details: "built to helpe me in small busniess calculations",
     img: "7essabat.jpg",
-    href: "https://ali007-depug.github.io/7essAbAt-App-V2/",
-    repo: "https://github.com/ali007-depug/7essAbAt-App-V2/",
+    href: "https://7essabat-app.netlify.app/",
+    repo: "https://github.com/ali007-depug/7essAbAt-App-V3/",
     category: "personal",
 
     builtWith: {
-      html: "html.webp",
-      sass: "sass.webp",
-      js: "js.webp",
+      react: "react.webp",
+      typescript: "typeScript.webp",
+      tailwind: "tailwindCss.webp",
+      shadcn: "shadcn.webp",
     },
   },
   {
@@ -209,8 +211,7 @@ export function ProjcetsProvider({ children }: { children: React.ReactNode }) {
         selectedCategory,
         setSelectedCategory,
         filterdProjects,
-        allProjects
-        
+        allProjects,
       }}
     >
       {children}
