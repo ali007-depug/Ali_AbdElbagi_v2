@@ -8,10 +8,12 @@ type Props = {
   };
 };
 
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const {locale} = await (params) ?? "ar";
+  const {locale} = (params) ?? "ar";
   const isArabic = locale === "ar";
 
   return {
@@ -24,10 +26,10 @@ export async function generateMetadata(
       : "Explore projects and portfolio work by Ali AbdElbagi",
 
     alternates: {
-      canonical: `/${locale}/works`,
+      canonical: `${baseUrl}/${locale}/works`,
       languages: {
-        ar: "/ar/works",
-        en: "/en-US/works",
+        ar: `${baseUrl}/ar/works`,
+        en: `${baseUrl}/en-US/works`,
       },
     },
 
@@ -40,12 +42,12 @@ export async function generateMetadata(
         ? "مشاريع وأعمال علي عبدالباقي في تطوير الويب"
         : "Projects and portfolio work by Ali AbdElbagi",
 
-      url: `/${locale}/works`,
+      url: `${baseUrl}/${locale}/works`,
       type: "website",
 
       images: [
         {
-          url: `/${locale}/opengraph-image`,
+          url: `${baseUrl}/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: isArabic
@@ -57,7 +59,7 @@ export async function generateMetadata(
 
     twitter: {
       card: "summary_large_image",
-      images: [`/${locale}/opengraph-image`],
+      images: [`${baseUrl}/${locale}/opengraph-image`],
     },
   };
 }

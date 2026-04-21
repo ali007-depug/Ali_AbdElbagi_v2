@@ -9,6 +9,8 @@ type Props = {
   };
 };
 
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
@@ -25,10 +27,10 @@ export async function generateMetadata(
       : "Discover Ali AbdElbagi’s skills in frontend development using React and Next.js",
 
     alternates: {
-      canonical: `/${locale}/skills`,
+      canonical: `${baseUrl}/${locale}/skills`,
       languages: {
-        ar: "/ar/skills",
-        en: "/en-US/skills",
+        ar: `${baseUrl}/ar/skills`,
+        en: `${baseUrl}/en-US/skills`,
       },
     },
 
@@ -41,12 +43,12 @@ export async function generateMetadata(
         ? "مهارات وتقنيات علي عبدالباقي في تطوير الويب"
         : "Frontend development skills and technologies",
 
-      url: `/${locale}/skills`,
+      url: `${baseUrl}/${locale}/skills`,
       type: "website",
 
       images: [
         {
-          url: `/${locale}/opengraph-image`,
+          url: `${baseUrl}/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: isArabic
@@ -58,7 +60,7 @@ export async function generateMetadata(
 
     twitter: {
       card: "summary_large_image",
-      images: [`/${locale}/opengraph-image`],
+      images: [`${baseUrl}/${locale}/opengraph-image`],
     },
   };
 }

@@ -10,6 +10,7 @@ type Props = {
     locale: "ar" | "en-US";
   }>;
 };
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
 
 export async function generateMetadata(
   { params }: Props
@@ -27,10 +28,10 @@ export async function generateMetadata(
       : "Articles and technical tutorials by Ali AbdElbagi about web development",
 
     alternates: {
-      canonical: `/${locale}/blog`,
+      canonical: `${baseUrl}/${locale}/blog`,
       languages: {
-        ar: "/ar/blog",
-        en: "/en-US/blog",
+        ar: `${baseUrl}/ar/blog`,
+        en: `${baseUrl}/en-US/blog`,
       },
     },
 
@@ -43,12 +44,12 @@ export async function generateMetadata(
         ? "مقالات تقنية حول تطوير الويب"
         : "Technical articles about web development",
 
-      url: `/${locale}/blog`,
+      url: `${baseUrl}/${locale}/blog`,
       type: "website",
 
       images: [
         {
-          url: `/${locale}/opengraph-image`,
+          url: `${baseUrl}/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: isArabic
@@ -60,7 +61,7 @@ export async function generateMetadata(
 
     twitter: {
       card: "summary_large_image",
-      images: [`/${locale}/opengraph-image`],
+      images: [`${baseUrl}/${locale}/opengraph-image`],
     },
   };
 }

@@ -15,6 +15,7 @@ type Props = {
 
 export const dynamic = "force-static";
 
+
 export default async function Post({
   params,
 }: {
@@ -130,6 +131,7 @@ export async function generateStaticParams() {
 export const dynamicParams = true; // This means "Generate them on-demand when visited"
 
 // meta data
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
 
@@ -157,17 +159,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: description,
 
     alternates: {
-      canonical: `/${locale}/blog/${slug}`,
+      canonical: `${baseUrl}/${locale}/blog/${slug}`,
       languages: {
-        ar: `/ar/blog/${slug}`,
-        en: `/en-US/blog/${slug}`,
+        ar: `${baseUrl}/ar/blog/${slug}`,
+        en: `${baseUrl}/en-US/blog/${slug}`,
       },
     },
     openGraph: {
       title: title,
       description: description,
       type: "article",
-      url: `/${locale}/blog/${slug}`,
+      url: `${baseUrl}/${locale}/blog/${slug}`,
       images: [
         {
           url: imageUrl,
@@ -179,7 +181,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      images: [`/${locale}/opengraph-image`],
+      images: [`${baseUrl}/${locale}/opengraph-image`],
     },
   };
 }
