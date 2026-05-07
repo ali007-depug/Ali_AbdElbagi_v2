@@ -1,0 +1,78 @@
+import About from "@/src/app/[locale]/about/_components/About";
+
+import Sidepanel from "@/src/components/SidePanel";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = (await params) ?? "ar";
+  const isArabic = locale === "ar";
+
+  return {
+    title: isArabic ? "من أنا " : "About Me ",
+
+    description: isArabic
+      ? "تعرف على علي عبدالباقي، مطور واجهات ويب متخصص في Next.js"
+      : "Learn more about Ali AbdElbagi, a frontend developer specialized in Next.js",
+
+    alternates: {
+      canonical: `${baseUrl}/${locale}/about`,
+      languages: {
+        ar: `${baseUrl}/ar/about`,
+        "en-US": `${baseUrl}/en-US/about`,
+        "x-default": `${baseUrl}/en-US/about`,
+      },
+    },
+
+    openGraph: {
+      title: isArabic ? "من أنا – علي عبدالباقي" : "About Me – Ali AbdElbagi",
+
+      description: isArabic
+        ? "تعرف على علي عبدالباقي، مطور واجهات ويب"
+        : "Learn more about Ali AbdElbagi",
+
+      url: `${baseUrl}/${locale}/about`,
+      type: "profile",
+
+      images: [
+        {
+          url: `${baseUrl}/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      images: [`${baseUrl}/${locale}/opengraph-image`],
+    },
+  };
+}
+
+export default async function AboutMe({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ namespace: "aboutPage", locale });
+  return (
+    <section className="px-dyp py-5 md:py  relative top-19 sm:max-md:top-27.75  bg-p-color">
+      {/* Section title */}
+      <h1 className="text-dyTitle mx-auto w-fit font-bold text-white mb-5">
+        {t("about.title")}
+      </h1>
+
+      <Sidepanel />
+
+      <About />
+    </section>
+  );
+}
