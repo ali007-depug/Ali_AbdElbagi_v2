@@ -16,6 +16,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+
 interface ProjectContentProps {
   title: string;
 }
