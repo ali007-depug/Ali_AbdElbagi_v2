@@ -154,7 +154,7 @@ function Card({
           <div className="mt-4 flex items-center justify-between gap-3.5 @container">
             {/* Tech icons */}
             <div className="flex gap-3 items-center">
-              <span className="text-sky-800 font-bold">
+              <span className="text-sky-800 font-bold hidden md:blockg">
                 {t("myWorks.projects.builtWith")}
               </span>
               {Object.entries(builtWith ?? {}).map(([tech, iconSrc], index) => (
@@ -182,7 +182,7 @@ function Card({
                 title={t("myWorks.projects.viewProject")} // ✅ Translated tooltip
               >
                 <span className="block @max-sm:p-2 rounded transition-all duration-300 ease-linear @max-sm:hover:bg-p-color/20">
-                  <FaEye size={23} color="#223549" />
+                  <FaEye size={22} color="#223549" />
                 </span>
                 <h5 className="@md:block hidden w-fit">
                   {t("myWorks.projects.liveSite")}
