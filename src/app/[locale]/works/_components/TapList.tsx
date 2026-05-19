@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useProjects } from "@/src/context/ProjectContext";
-import { ProjectsContextType } from "../../../../../components/ui/components/WorkCard";
+import { ProjectsContextType } from "./WorkCard";
 export default function TapList() {
   const { selectedCategory, setSelectedCategory } =
     useProjects() as ProjectsContextType;
