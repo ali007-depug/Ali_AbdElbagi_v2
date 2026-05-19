@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import { Fragment } from "react";
 import { useTranslations } from "next-intl";
 import { FaCode } from "react-icons/fa6";
-import { FaEye } from "react-icons/fa";
+import { FaExternalLinkAlt, FaEye } from "react-icons/fa";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
 interface WorkCardsProps {
   customStyle?: string;
@@ -14,8 +15,10 @@ interface WorkCardsProps {
 export interface Project {
   id: string;
   title: string;
+  modalTitle: string;
+  description?: string;
   details: string;
-  img: string;
+  imgs: string[];
   href: string;
   repo: string;
   builtWith: { [key: string]: string };
@@ -49,8 +52,10 @@ export default function WorkCards({
           >
             <Card
               title={work.title}
+              modalTitle={work.modalTitle}
+              description={work.description}
               details={work.details}
-              thumb={work.img}
+              thumb={work.imgs[0]} // Use the first image as the thumbnail
               href={work.href}
               repo={work.repo}
               builtWith={work.builtWith}
@@ -68,7 +73,9 @@ export default function WorkCards({
 
 interface CardProps {
   title: string;
+  modalTitle: string;
   details: string;
+  description?: string;
   thumb: string;
   href: string;
   repo: string;
@@ -79,6 +86,7 @@ interface CardProps {
 // Card component
 function Card({
   title,
+  modalTitle,
   details,
   thumb,
   href,
@@ -91,18 +99,48 @@ function Card({
     <article
       className={`work bg-white shadow-2xl shadow-s-color rounded-md overflow-hidden ${customStyle}`}
     >
-      <div className="group relative">
+      <div className="relative">
         {/* thumb wrapper */}
-        <div className="work__thumb w-[100%] min-h-[169px] bg-s-color">
+        <Link
+          href={`/works/${modalTitle.toLowerCase()}`}
+          scroll={false}
+          className="relative group block overflow-hidden rounded-md bg-s-color"
+        >
+          {/* Image with subtle scale-up on hover */}
           <Image
             src={`/${thumb}`}
             width={350}
             height={350}
-            alt=""
-            className="img__thumb sm:w-[90%]  mx-auto p-1.5 sm:p-2.5 group-hover:w-[100%] group-hover:p-0 transition-all duration-300 ease-in-out"
+            alt={title}
+            className="img__thumb sm:w-[90%] mx-auto p-1.5 sm:p-2.5 
+               group-hover:scale-110 group-hover:w-full group-hover:p-0 
+               transition-all duration-500 ease-out object-cover"
+            sizes="350px"
+            loading="eager"
           />
-        </div>
 
+          {/* Modern Overlay: Glassmorphism effect */}
+          <div
+            className="absolute inset-0 z-10 flex flex-col justify-center items-center 
+                  bg-slate-900/40 backdrop-blur-[2px] 
+                  opacity-0 group-hover:opacity-100 
+                  transition-all duration-300 ease-in-out"
+          >
+            {/* Animated "More" Content */}
+            <div className="flex flex-col items-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+              <div className="bg-white/90 p-3 rounded-full mb-2 shadow-xl text-p-color">
+                <FaExternalLinkAlt size={20} className="animate-pulse" />
+              </div>
+              <span className="text-white font-bold text-lg tracking-widest uppercase">
+                {t("myWorks.projects.viewDetails") || "Details"}
+              </span>
+            </div>
+
+            {/* Subtle Corner Accents (Optional Modern Touch) */}
+            <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50 opacity-0 group-hover:opacity-100 transition-opacity delay-100" />
+            <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-white/50 opacity-0 group-hover:opacity-100 transition-opacity delay-100" />
+          </div>
+        </Link>
         {/* projects content wrapper */}
         <div className="work__content text-center px-4 mt-6 my-3">
           {/* project name */}

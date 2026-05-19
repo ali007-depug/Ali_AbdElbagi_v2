@@ -1,5 +1,5 @@
 "use client";
-import WorkCards from "@/src/components/WorkCard";
+import WorkCards from "@/src/app/[locale]/works/_components/WorkCard";
 import { Link } from "@/i18n/navigation";
 import { useProjects, ProjcetsProvider } from "@/src/context/ProjectContext";
 import { useTranslations } from "next-intl";
@@ -7,7 +7,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 import { useParams } from "next/navigation";
 
 // type
-import { ProjectsContextType } from "@/src/components/WorkCard";
+import { ProjectsContextType } from "@/src/app/[locale]/works/_components/WorkCard";
 export default function Work() {
   const { allProjects } = useProjects() as ProjectsContextType;
   const t = useTranslations();

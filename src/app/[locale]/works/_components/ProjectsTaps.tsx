@@ -1,7 +1,7 @@
 "use client";
 import { ProjcetsProvider } from "@/src/context/ProjectContext";
 import TapList from "./TapList";
-import WorkCards from "@/src/components/WorkCard";
+import WorkCards from "@/src/app/[locale]/works/_components/WorkCard";
 export default function ProjectsTaps() {
   return (
     <ProjcetsProvider>

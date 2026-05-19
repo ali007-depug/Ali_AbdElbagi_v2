@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src/app/proxy.ts"
+    "src/app/proxy.ts",
+    "src/app/[locale]/@modal/(.)works/project/[title]."
   ],
   "exclude": ["node_modules"]
 }

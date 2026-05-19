@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Locale, routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { cairo } from "../../components/fonts";
+// import { cairo } from "../../components/fonts";
 import Header from "./_components/Header/Header";
 import Contact from "./_components/Contact/Contact";
 import { ProjcetsProvider } from "../../context/ProjectContext";
@@ -13,6 +13,7 @@ const SITE_URL = "https://ali-abd-elbagi-v2.vercel.app/";
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
+  modal?: React.ReactNode;
 };
 
 /**
@@ -86,9 +87,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocaleLayout({
   children,
   params,
+  modal,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
+  modal?: React.ReactNode;
 }) {
   // 1. Extract locale from URL params
   const { locale } = await params;
@@ -105,21 +108,27 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   // 4. Render with proper locale
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <link rel="icon" href="/favicon.ico" />
-      <meta
-        name="google-site-verification"
-        content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
-      />
-      <body className={`${cairo} antialiased`}>
+    // <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+      // <link rel="icon" href="/favicon.ico" />
+      // <meta
+        // name="google-site-verification"
+        // content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
+      // />
+      // <body className={`${cairo} antialiased`}>
+      
         <NextIntlClientProvider messages={messages}>
+          <div dir={locale === "ar" ? "rtl" : "ltr"}></div>
           <Header />
-          <ProjcetsProvider>{children}</ProjcetsProvider>
+          <ProjcetsProvider>
+            {children}
+            {modal}
+          </ProjcetsProvider>
           <Contact />
         </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+  )
+      {/* </body> */}
+    // </html>
+  
 }
 
 // Generate static pages for all locales
