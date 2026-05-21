@@ -30,9 +30,7 @@ export default async function Post({
     locale,
     include: 2,
   });
-  console.log(
-    `Searching for slug: ${slug} in locale: ${locale}. Found: ${post.items.length} items.`,
-  );
+ 
   // Translation hook
   const t = await getTranslations({
     locale,

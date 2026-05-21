@@ -20,13 +20,13 @@ export default async function TagsNav({ locale }: { locale: string }) {
   // Render clickable tags with counts
   const allTags = Object.entries(tagWithCount || {}).map(([tag, count]) => (
     <Link
-      href={`/blog/tags/${tag}`}
+      href={`/${locale}/blog/tags/${tag}`}
       key={tag}
-      className="flex gap-2 items-center justify-center mb-2 bg-white  px-2 min-w-[200px] py-1.5 rounded-md cursor-pointer hover:bg-gray-300  transition-all duration-300 ease-in-out"
+      className="flex gap-2 items-center justify-center mb-2 bg-white  px-2 min-w-50 py-1.5 rounded-md cursor-pointer hover:bg-gray-300  transition-all duration-300 ease-in-out"
       // Navigate to tag-specific page on click
     >
       {/* Tag name */}
-      <span className="text-p-color min-w-[120px] text-center font-medium">
+      <span className="text-p-color min-w-30 text-center font-medium">
         {tag}
       </span>
       {/* Tag count badge */}

@@ -18,7 +18,7 @@ export default async function page({
   // Handle case where no posts are found for the given tag
 
   return (
-    <section className="space-y-2 px-5 flex items-center flex-col relative top-[76px] sm:max-md:top-[111px ">
+    <section className="space-y-2 px-5 flex items-center flex-col relative top-19 sm:max-md:top-27.75 ">
       {/* Page title showing the tag name */}
       <h1 className="text-2xl md:text-4xl mt-5 mx-auto text-center font-bold text-p-color">
         {tag}

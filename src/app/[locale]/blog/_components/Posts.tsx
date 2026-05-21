@@ -22,7 +22,7 @@ export default async function Posts({ data }:any) {
             </h3>
 
             {/* Blog post description with truncation on small screens */}
-            <p className="text-gray-200 @max-lg:text-sm  overflow-ellipsis overflow-hidden whitespace-nowrp  ">
+            <p className="text-gray-200 @max-lg:text-sm  text-ellipsis overflow-hidden whitespace-nowrp  ">
               {post.fields.description}
             </p>
           </div>

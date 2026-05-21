@@ -95,7 +95,6 @@ export default async function LocaleLayout({
 }) {
   // 1. Extract locale from URL params
   const { locale } = await params;
-
   // for static route
   setRequestLocale(locale);
 
@@ -109,28 +108,29 @@ export default async function LocaleLayout({
   // 4. Render with proper locale
   return (
     // <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      // <link rel="icon" href="/favicon.ico" />
-      // <meta
-        // name="google-site-verification"
-        // content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
-      // />
-      // <body className={`${cairo} antialiased`}>
-      
-        <NextIntlClientProvider messages={messages}>
-          <div dir={locale === "ar" ? "rtl" : "ltr"}></div>
-          <Header />
-          <ProjcetsProvider>
-            {children}
-            {modal}
-          </ProjcetsProvider>
-          <Contact />
-        </NextIntlClientProvider>
-  )
-      {/* </body> */}
-    // </html>
-  
-}
+    // <link rel="icon" href="/favicon.ico" />
+    // <meta
+    // name="google-site-verification"
+    // content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
+    // />
+    // <body className={`${cairo} antialiased`}>
 
+    <NextIntlClientProvider messages={messages}>
+      <div dir={locale === "ar" ? "rtl" : "ltr"}>
+        <Header />
+        <ProjcetsProvider>
+          {children}
+          {modal}
+        </ProjcetsProvider>
+        <Contact />
+      </div>
+    </NextIntlClientProvider>
+  );
+  {
+    /* </body> */
+  }
+  // </html>
+}
 // Generate static pages for all locales
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
