@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cairo } from "../components/fonts";
-
+import MicrosoftClarity from "@/src/components/MicrosoftClarity";
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export default function RootLayout({
@@ -18,7 +18,9 @@ export default function RootLayout({
         content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
       />
 
-      <body className={cairo + " antialiased"}>{children}</body>
+      <body className={cairo + " antialiased"}>{children}
+        <MicrosoftClarity />
+      </body>
     </html>
   );
 }
