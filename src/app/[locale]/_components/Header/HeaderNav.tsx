@@ -2,6 +2,9 @@ import ChangeLangButton from "./LangButton";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { HomeIcon, InfoIcon, WorkflowIcon } from "lucide-react";
+import { GiSkills } from "react-icons/gi";
+import { GrBlog } from "react-icons/gr";
 
 interface NavProp {
   isMenuOpen: boolean;
@@ -9,11 +12,11 @@ interface NavProp {
 }
 
 const navLinks = [
-  { id: 0, link: "home" },
-  { id: 1, link: "about" },
-  { id: 2, link: "works" },
-  { id: 3, link: "skills" },
-  { id: 4, link: "blog" },
+  { id: 0, link: "home", icon: <HomeIcon size={15}/> },
+  { id: 1, link: "about",icon: <InfoIcon size={15}/> },
+  { id: 2, link: "works", icon:<WorkflowIcon size={15}/> },
+  { id: 3, link: "skills" , icon : <GiSkills size={15}/>},
+  { id: 4, link: "blog" , icon : <GrBlog size={15}/>},
 ];
 
 export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
@@ -35,11 +38,14 @@ export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
         <Link
           href={to}
           onClick={isMenuOpen ? toggleMenu : undefined}
-          className={`transition-all duration-100 ease-in-out ${
+          className={`flex gap-1 min-w-fit transition-all duration-100 ease-in-out ${
             isActive ? "border-b-p-color border-b-[3px]" : ""
           }`}
         >
-          {t(`header.menu.${link.link}`)}
+          <div className="flex gap-2 items-center">
+
+         {link.icon} {t(`header.menu.${link.link}`)} 
+          </div>
         </Link>
       </li>
     );
