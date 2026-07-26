@@ -136,6 +136,15 @@ export default function MarkdownRendering({ content }: { content: string }) {
               {children}
             </a>
           ),
+          blockquote(props) {
+            const { ...rest } = props;
+            return (
+              <blockquote
+                className="my-4 bg-gray-100 border-l-4 border-gray-400 p-4 rounded-r-md text-gray-700 italic"
+                {...rest}
+              />
+            );
+          },
           // Custom code block component with syntax highlighting and copy functionality
           code: CodeBlock,
         }}
