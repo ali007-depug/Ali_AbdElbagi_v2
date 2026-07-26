@@ -140,7 +140,7 @@ export default function MarkdownRendering({ content }: { content: string }) {
             const { ...rest } = props;
             return (
               <blockquote
-                className="my-4 bg-gray-100 border-l-4 border-gray-400 p-4 rounded-r-md text-gray-700 italic"
+                className="my-4 bg-gray-100  p-4 rounded-r-md text-gray-700 italic"
                 {...rest}
               />
             );
