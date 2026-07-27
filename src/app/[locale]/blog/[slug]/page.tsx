@@ -84,7 +84,7 @@ export default async function Post({
 
           <div className="space-y-2">
             {/* Author Name - Using your Sky color for branding */}
-            <h3 className="text-lg md:text-xl font-bold text-sky-600">
+            <h3 className="text-lg md:text-xl max-sm:text-center font-bold text-sky-600">
               {author.fields.name}
             </h3>
 
