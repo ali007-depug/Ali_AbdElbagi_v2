@@ -18,7 +18,7 @@ export default function TapList() {
   ];
 
   return (
-    <div className="flex justify-center max-sm:flex-col my-10">
+    <div className="flex flex-wrap justify-center max-sm:flex-col my-10 gap-2">
       {list.map((item) => (
         <motion.button
           key={item.key}
@@ -28,7 +28,7 @@ export default function TapList() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className={`${
-            selectedCategory === item.key ? "bg-s-color !text-bg-color " : ""
+            selectedCategory === item.key ? "bg-s-color text-bg-color! " : ""
           } capitalize cursor-pointer sm:not-first:ml-2 max-sm:not-last:mb-2 px-2 py-3 rounded text-p-color bg-n-color/30 max-sm:min-w-20 sm:min-w-35 font-extrabold`}
           onClick={() => setSelectedCategory?.(item.key)}
         >
