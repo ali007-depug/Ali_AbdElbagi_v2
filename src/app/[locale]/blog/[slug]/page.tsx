@@ -23,7 +23,8 @@ export default async function Post({
 }) {
   const { slug, locale } = await params;
 
-  const {readingTime , post} = await getPostById({ slug, locale });
+  const {post, readingTime} = await getPostById({ slug, locale });
+
 
   console.log("Reading Time:", readingTime);
   // // Fetch blog post data using custom hook
