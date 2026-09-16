@@ -12,51 +12,6 @@ type Props = {
 };
 const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-  const isArabic = locale === "ar";
-
-  return {
-    title: isArabic ? "المدونة" : "Blog ",
-
-    description: isArabic
-      ? "مقالات ودروس تقنية يكتبها علي عبدالباقي حول تطوير الويب"
-      : "Articles and technical tutorials by Ali AbdElbagi about web development",
-
-    alternates: {
-      canonical: `${baseUrl}/${locale}/blog`,
-      languages: {
-        ar: `${baseUrl}/ar/blog`,
-        en: `${baseUrl}/en-US/blog`,
-      },
-    },
-
-    openGraph: {
-      title: isArabic ? "مدونة علي عبدالباقي" : "Ali AbdElbagi Blog",
-
-      description: isArabic
-        ? "مقالات تقنية حول تطوير الويب"
-        : "Technical articles about web development",
-
-      url: `${baseUrl}/${locale}/blog`,
-      type: "website",
-
-      images: [
-        {
-          url: `${baseUrl}/${locale}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: isArabic ? "مدونة علي عبدالباقي" : "Ali AbdElbagi blog",
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      images: [`${baseUrl}/${locale}/opengraph-image`],
-    },
-  };
-}
 
 export default async function Page({
   params,
@@ -85,4 +40,51 @@ export default async function Page({
       </div>
     </section>
   );
+}
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === "ar";
+
+  return {
+    title: isArabic ? "المدونة | ركن البرمجة" : "Blog | Code Corner",
+
+    description: isArabic
+      ? "مقالات ودروس تقنية يكتبها علي عبدالباقي حول تطوير الويب"
+      : "Articles and technical tutorials by Ali AbdElbagi about web development",
+
+    alternates: {
+      canonical: `${baseUrl}/${locale}/blog`,
+      languages: {
+        ar: `${baseUrl}/ar/blog`,
+        en: `${baseUrl}/en-US/blog`,
+      },
+    },
+
+    openGraph: {
+      title: isArabic ? "مدونة علي | ركن البرمجة" : "Ali's Blog | Code Corner",
+
+      description: isArabic
+        ? "مقالات تقنية حول تطوير الويب"
+        : "Technical articles about web development",
+
+      url: `${baseUrl}/${locale}/blog`,
+      type: "website",
+
+      images: [
+        {
+          url: `${baseUrl}/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: isArabic ? "مدونة علي | ركن البرمجة" : "Ali's Blog | Code Corner",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      images: [`${baseUrl}/${locale}/opengraph-image`],
+    },
+  };
 }
