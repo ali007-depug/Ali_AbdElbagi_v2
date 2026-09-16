@@ -10,6 +10,10 @@ import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import javascript from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 
+import type { ExtraProps } from "react-markdown";
+import type { ClassAttributes, HTMLAttributes } from "react";
+
+
 SyntaxHighlighter.registerLanguage("jsx", jsx);
 SyntaxHighlighter.registerLanguage("javascript", javascript);
 SyntaxHighlighter.registerLanguage("typescript", typescript);
@@ -155,7 +159,12 @@ export default function MarkdownRendering({ content }: { content: string }) {
   );
 }
 
-function CodeBlock({ className, children, ...props }: any) {
+
+type CodeBlockProps = ClassAttributes<HTMLElement> &
+  HTMLAttributes<HTMLElement> &
+  ExtraProps;
+
+function CodeBlock({ className, children,ref, ...props }: CodeBlockProps) {   
   const [copied, setCopied] = useState(false);
 
   // Check if it's a code block (has a language class) or inline code
