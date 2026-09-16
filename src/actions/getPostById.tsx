@@ -18,7 +18,7 @@ export default async function getPostById({ slug, locale }: { slug: string; loca
 
     const typedPost = post as unknown as BlogPost;
 
-  const readingTime = getReadingTime(post.fields.content, locale);
+  const readingTime = getReadingTime(typedPost.fields.content, locale);
   return { post: typedPost, readingTime };
 }
  
