@@ -66,7 +66,7 @@ export default async function Post({
       </p>
       {/* Reading Time */}
       <p className="text-base md:text-l italic font-semibold text-s-color/80 mt-3 mb-8 max-w-[50ch] mx-auto">
-        {readingTime.text}
+        {readingTime.label}
       </p>
       {/* Main blog post content */}
       <div className="max-w-xl bg-red200 leading-10 mb-4 text-start max-sm:px-5  mx-auto text-base md:text-lg font-medium text-p-color whitespace-pre-ine">
