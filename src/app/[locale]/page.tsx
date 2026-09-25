@@ -1,12 +1,12 @@
 import { Skills,Works,About,Hero } from "@/features/home";
 
-type Props = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+// type Props = {
+//   params: Promise<{
+//     locale: string;
+//   }>;
+// };
 
-export default async function Home({ params }: Props) {
+export default async function Home() {
   // const { locale } = await (params);
 
   return (
