@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Geist } from "next/font/google";
-import { cairo } from "../components/fonts";
-import MicrosoftClarity from "@/src/components/MicrosoftClarity";
+import { cairo } from "./fonts/fonts";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export default function RootLayout({

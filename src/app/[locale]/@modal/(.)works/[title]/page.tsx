@@ -4,12 +4,9 @@ import { use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
-import { useProjects } from "@/src/context/ProjectContext";
-import {
-  Project,
-  ProjectsContextType,
-} from "@/src/app/[locale]/works/_components/WorkCard";
-import ProjectContent from "@/src/app/[locale]/_components/ProjectContent";
+import { useProjects } from "@/context/ProjectContext";
+import {ProjectContent} from "@/features/works";
+import type {Project,ProjectsContextType} from "@/features/works";
 export default function ProjectModal({
   params,
 }: {

@@ -1,8 +1,5 @@
 import { Suspense } from "react";
-import PostWrapper from "./_components/PostWrapper";
-import BlogHeader from "./_components/BlogHeader";
-import TagsWrapper from "./_components/TagsWrapper";
-import PostsSkeleton from "./_components/PostsSkeleton";
+import { PostWrapper,BlogHeader,TagsWrapper,PostsSkeleton } from "@/features/blog";
 import type { Metadata } from "next";
 
 type Props = {

@@ -1,6 +1,6 @@
-import About from "@/src/app/[locale]/about/_components/About";
+import About from "@/features/about/About";
+import Sidepanel from "@/features/about/SidePanel";
 
-import Sidepanel from "@/src/components/SidePanel";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 

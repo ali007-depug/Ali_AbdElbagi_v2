@@ -1,13 +1,11 @@
-import MarkdownRendering from "@/src/app/[locale]/blog/_components/MarkdownRendering";
-import BackButton from "@/src/app/[locale]/blog/_components/BackBtn";
+import { MarkdownRendering, BackButton, getPostById } from "@/features/blog";
 import { TbArrowBack } from "react-icons/tb";
-import { client } from "@/src/lib/contentful";
+import { client } from "@/lib/contentful";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import getPostById from "../../../../actions/getPostById";
-import type { BlogPostFields } from "@/src/types/contentful";
+
 type Props = {
   params: Promise<{
     locale: "ar" | "en-US";
@@ -16,6 +14,10 @@ type Props = {
 };
 
 export const dynamic = "force-static";
+export const dynamicParams = true; // This means "Generate them on-demand when 
+// visited"
+const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
+
 
 export default async function Post({
   params,
@@ -25,16 +27,6 @@ export default async function Post({
   const { slug, locale } = await params;
 
   const { post, readingTime } = await getPostById({ slug, locale });
-
-  console.log("Reading Time:", readingTime);
-  // // Fetch blog post data using custom hook
-  // const post = await client.getEntries({
-  //   content_type: "blog",
-  //   "fields.slug": slug,
-  //   limit: 1,
-  //   locale,
-  //   include: 2,
-  // });
 
   // Translation hook
   const t = await getTranslations({
@@ -46,9 +38,9 @@ export default async function Post({
     notFound();
   }
 
-  // Destructure post fields
-  const { title, description, content, tag, author } =
-    post?.fields as unknown as BlogPostFields;
+  const { title, description, content, tag, author } = post?.fields;
+  const authorImage = author?.fields.media?.fields.file?.url;
+
   return (
     <section className="text-center py-5 space-y-2 max-md:px-5  relative top-19 sm:max-md:top-27.75">
       <BackButton
@@ -72,55 +64,57 @@ export default async function Post({
       {/* Main blog post content */}
       <div className="max-w-xl bg-red200 leading-10 mb-4 text-start max-sm:px-5  mx-auto text-base md:text-lg font-medium text-p-color whitespace-pre-ine">
         {/* {content} */}
-        <MarkdownRendering content={content} />
+        <MarkdownRendering content={content ?? ""} />
       </div>
-      {/* Tag/category badge */}
-      <span className="inline-block mb-5 bg-p-color text-sky-400 text-xs font-semibold px-2 py-1 rounded-md">
-        #{tag}
-      </span>
+
+      {tag?.map((t) => (
+        <span
+          key={t}
+          className="inline-block mb-5 me-2 bg-p-color text-sky-400 text-xs font-semibold px-2 py-1 rounded-md"
+        >
+          #{t}
+        </span>
+      ))}
+
       {author && (
-        <div className="max-w-xl mx-auto my-12 p-6 border-2 border-p-color rounded-xl flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-sm transition-all hover:shadow-md text-start">
-          {/* Author Image with Border to match your Image style */}
-          <div className="relative shrink-0">
+        <div className="max-w-xl mx-auto my-12 p-6 border-2 border-p-color rounded-xl flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-sm hover:shadow-md text-start">
+          {authorImage && (
             <Image
-              src={`https:${author.fields.media.fields.file.url}`}
+              src={`https:${authorImage}`}
               width={80}
               height={80}
-              className="rounded-full border-2 border-sky-600 object-cover shadow-sm"
-              alt={author.fields.name}
+              className="rounded-full border-2 border-sky-600 object-cover shadow-sm shrink-0"
+              alt={author.fields.name ?? ""}
             />
-          </div>
-
+          )}
           <div className="space-y-2">
-            {/* Author Name - Using your Sky color for branding */}
-            <h3 className="text-lg md:text-xl max-sm:text-center font-bold text-sky-600">
-              {author.fields.name}
-            </h3>
-
-            {/* Author Bio - Matching your content font size and leading */}
+            {author.fields.name && (
+              <h3 className="text-lg md:text-xl max-sm:text-center font-bold text-sky-600">
+                {author.fields.name}
+              </h3>
+            )}
             <p className="text-base text-p-color leading-relaxed font-medium">
               {author.fields.bio}
             </p>
-
-            {/* Optional: Social Link if you added it to Contentful */}
-            {author.fields.github && (
-              <a
-                href={author.fields.github}
+            {/* ======== For Futrue ============ */}
+            {/* {author.fields.forSocialLinks && (
+              
+                href={author.fields.forSocialLinks}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block mt-2 text-sm font-bold text-s-color underline hover:text-sky-500 transition-colors"
               >
-                View Profile
+                View profile
               </a>
-            )}
+            )} */}
           </div>
         </div>
-      )}{" "}
+      )}
     </section>
   );
 }
 
 export async function generateStaticParams() {
-  // Fetch all blog slugs once
   const entries = await client.getEntries({
     content_type: "blog",
     select: ["fields.slug"],
@@ -128,66 +122,43 @@ export async function generateStaticParams() {
   });
 
   return entries.items.flatMap((item) =>
-    ["en-US", "ar"].map((locale) => ({
-      slug: item.fields.slug,
-      locale,
-    })),
+    typeof item.fields.slug === "string"
+      ? ["en-US", "ar"].map((locale) => ({ slug: item.fields.slug as string, locale }))
+      : [],
   );
 }
 
-export const dynamicParams = true; // This means "Generate them on-demand when visited"
-
-// meta data
-const baseUrl = "https://ali-abd-elbagi-v2.vercel.app";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
+  const { post } = await getPostById({slug, locale}); // same cached call as the page
 
-  const post = await client.getEntries({
-    content_type: "blog",
-    "fields.slug": slug,
-    limit: 1,
-    locale,
-  });
-
-  // If post wasn't found, return fallback metadata
-  if (!post || !post.items || post.items.length === 0) {
-    return { title: "Post Not Found" };
-  }
-
-  const isArabic = locale === "ar";
-
-  const { title, description, media } = post.items[0]?.fields as unknown as BlogPostFields;
-  const imageUrl = `https:${media?.fields?.file.url}`;
+  const { title, description, media } = post.fields;
+  const rawUrl = media?.fields.file?.url;
+  const imageUrl = rawUrl ? `https:${rawUrl}` : undefined;
+  const url = `${baseUrl}/${locale}/blog/${slug}`;
 
   return {
-    title: isArabic ? `${title}` : `${title}`,
-
-    description: description,
-
+    title,
+    description,
     alternates: {
-      canonical: `${baseUrl}/${locale}/blog/${slug}`,
+      canonical: url,
       languages: {
         ar: `${baseUrl}/ar/blog/${slug}`,
         en: `${baseUrl}/en-US/blog/${slug}`,
       },
     },
     openGraph: {
-      title: title,
-      description: description,
+      title,
+      description,
       type: "article",
-      url: `${baseUrl}/${locale}/blog/${slug}`,
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      url,
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630, alt: title }] : [],
     },
     twitter: {
       card: "summary_large_image",
-      images: [`${baseUrl}/${locale}/opengraph-image`],
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }

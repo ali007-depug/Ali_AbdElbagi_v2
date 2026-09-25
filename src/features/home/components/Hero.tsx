@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import TypeWritter from "@/components/Typewritter";
+import TypeWritter from "@/features/home/components/Typewritter";
 import CTAButton from "@/components/CTAButton";
 import { useTranslations } from "next-intl";
 import { FaLinkedin } from "react-icons/fa";

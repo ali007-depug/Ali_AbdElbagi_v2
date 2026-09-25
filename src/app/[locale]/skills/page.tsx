@@ -1,6 +1,4 @@
-import NextLevel from "./_components/NextLevel";
-import SkillHeader from "@/src/app/[locale]/skills/_components/skillHeader";
-import SkillsBadges from "@/src/components/SkillsBadges";
+import {NextLevel, SkillHeader, SkillsBadges} from "@/features/skills";
 import type { Metadata } from "next";
 
 type Props = {

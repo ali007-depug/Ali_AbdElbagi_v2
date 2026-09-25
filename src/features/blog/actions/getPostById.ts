@@ -1,6 +1,6 @@
 import { client } from "@/lib/contentful";
 import { getReadingTime } from "@/lib/readingTime";
-import type { TypeBlogSkeleton } from "@/types/contentful.ts/TypeBlog";
+import type { TypeBlogSkeleton } from "@/types/contentful";
 export async function getPostById({
   slug,
   locale,

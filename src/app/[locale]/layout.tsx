@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Locale, routing } from "@/i18n/routing";
+import { Locale, routing } from "@/../i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-// import { cairo } from "../../components/fonts";
-import Header from "./_components/Header/Header";
-import Contact from "./_components/Contact/Contact";
+import { Header , Contact } from "@/features/home";
 import { ProjcetsProvider } from "../../context/ProjectContext";
 
 const SITE_URL = "https://ali-abd-elbagi-v2.vercel.app/";

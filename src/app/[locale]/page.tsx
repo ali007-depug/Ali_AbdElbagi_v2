@@ -1,15 +1,21 @@
-// import Hero from "../../components/ui/components/Home/Hero";
-import Hero from "./_components/Hero";
-import About from "./_components/About/About";
-import Skills from "./_components/Skills";
-import Work from "./_components/Works";
-export default function Home() {
+import { Skills,Works,About,Hero,BlogOnHome } from "@/features/home";
+
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function Home({ params }: Props) {
+  const { locale } = await (params);
+
   return (
     <div>
       <Hero />
       <About />
-      <Work />
+      <Works />
       <Skills />
+      <BlogOnHome locale={locale} />
     </div>
   );
 }

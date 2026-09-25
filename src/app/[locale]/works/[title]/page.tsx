@@ -1,7 +1,7 @@
 "use client";
 
 import { use,useLayoutEffect } from "react";
-import ProjectContent from "../../_components/ProjectContent";
+import {ProjectContent} from "@/features/works";
 import { motion } from "framer-motion";
 
 

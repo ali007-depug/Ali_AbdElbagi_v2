@@ -1,5 +1,4 @@
-import ProjectsTaps from "./_components/ProjectsTaps";
-import WorksHeader from "@/src/app/[locale]/works/_components/WorksHeader";
+import {ProjectsTaps, WorksHeader} from "@/features/works";
 import type { Metadata } from "next";
 
 type Props = {

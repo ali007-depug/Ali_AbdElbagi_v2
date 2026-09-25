@@ -1,8 +1,6 @@
 import { TbArrowBack } from "react-icons/tb";
 import { getTranslations } from "next-intl/server";
-import BackButton from "@/src/app/[locale]/blog/_components/BackBtn";
-import TagsArticles from "@/src/app/[locale]/blog/_components/TagsArticles";
-
+import {BackButton, TagsArticles} from "@/features/blog";
 export default async function page({
   params,
 }: {

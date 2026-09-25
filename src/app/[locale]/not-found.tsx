@@ -1,7 +1,7 @@
 'use client'
 import { BiError } from "react-icons/bi";
 import { FiHome, FiArrowLeft } from "react-icons/fi";
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/../i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function NotFound() {

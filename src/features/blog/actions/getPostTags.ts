@@ -1,5 +1,5 @@
 import { client } from "@/lib/contentful";
-import type { TypeBlogSkeleton } from "@/types/contentful.ts/TypeBlog";
+import type { TypeBlogSkeleton } from "@/types/contentful";
 export  async function fetchPostsByTag(tag: string, locale: string) {
   const response =
     await client.withoutUnresolvableLinks.getEntries<TypeBlogSkeleton>({
