@@ -164,7 +164,9 @@
     "description": "Welcome to my blog where I share my thoughts, experiences, and tips on web development Programming and some tips about life, good reading! 😊",
     "recentPosts": " Recent Articles ✍️",
     "tags": "Tags",
-    "backToAllPosts": "Back to All Posts"
+    "backToAllPosts": "Back to All Posts",
+    "TOC":"Table Of Contents",
+    "writtenBy":"Written By"
   },
   "errorPage": {
     "defaultMsg": "Page Not Found",

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 
 import vscDarkPlus from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
@@ -48,8 +49,8 @@ export default function MarkdownRendering({ content }: { content: string }) {
         ReactMarkdown component renders markdown content
         rehypeRaw allows parsing of raw HTML within markdown
       */}
-      <ReactMarkdown
-        rehypePlugins={[rehypeRaw]}
+      <ReactMarkdown 
+        rehypePlugins={[rehypeRaw,rehypeSlug]}
         components={{
           h1(props) {
             const { ...rest } = props;
