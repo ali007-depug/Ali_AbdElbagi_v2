@@ -10,40 +10,42 @@ export default function About() {
   const t = useTranslations();
   return (
     <div
-      className="px-dyp relative py-5 md:py-15 top-[76px] sm:max-md:top-[120px] bg-p-color"
+      className="px-dyp relative py-16 top-[76px] sm:max-md:top-[120px] bg-p-color"
       id="about"
     >
-      {/* section title */}
-      <h1 className="text-center font-bold text-dyTitle text-white mb-10 tracking-wide">
-        {t("aboutMe.title")}
-      </h1>
+      {/* section header */}
+      <div className="mx-auto mb-14 max-w-2xl text-center">
+        <span className="inline-block rounded-full bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-400">
+          {t("aboutPage.about.eyebrow")}
+        </span>
+        <h1 className="mt-3 text-dyTitle font-bold text-white tracking-wide">
+          {t("aboutMe.title")}
+        </h1>
+      </div>
+
       {/* 2 col wrapper */}
-      <div className="flex max-md:flex-col gap-10">
-        {/* texts Wrapper*/}
+      <div className="flex max-md:flex-col gap-10 md:gap-14">
         <AboutText />
-        {/* Info with icon wrapper */}
-        <div className="w-full @container md:w-1/2  grid grid-cols-2 sm:grid-rows-2 gap-5 md:gap-10 p- md:p- rounded-lg mx-auto lg:mx-0">
+
+        <div className="w-full @container md:w-1/2 grid grid-cols-2 gap-4 md:gap-6 mx-auto lg:mx-0">
           <AboutCard
             cardDetails={t("aboutMe.uOfG")}
-            icon={
-              <FaUserGraduate size={25} color="oklch(50% 0.134 242.749) " />
-            }
+            icon={<FaUserGraduate size={22} />}
           />
           <AboutCard
             cardDetails={t("aboutMe.techCard")}
-            icon={<FaLaptop size={25} color="oklch(50% 0.134 242.749) " />}
+            icon={<FaLaptop size={22} />}
           />
           <AboutCard
             cardDetails={t("aboutMe.workCard")}
-            icon={<FaPeopleGroup size={25} color="oklch(50% 0.134 242.749) " />}
+            icon={<FaPeopleGroup size={22} />}
           />
           <AboutCard
             cardDetails={t("aboutMe.learnCard")}
-            icon={<IoLibrary size={25} color="oklch(50% 0.134 242.749) " />}
+            icon={<IoLibrary size={22} />}
           />
         </div>
       </div>
-      {/* ==== End of content */}
     </div>
   );
 }

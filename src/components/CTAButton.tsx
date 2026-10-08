@@ -1,4 +1,5 @@
 import { Link } from "@/../i18n/navigation";
+
 interface CTAButtonProps {
   isLink: boolean;
   href?: string;
@@ -7,6 +8,7 @@ interface CTAButtonProps {
   icon: React.ReactNode;
   customStyle: string;
 }
+
 export default function CTAButton({
   isLink,
   href,
@@ -15,27 +17,27 @@ export default function CTAButton({
   icon,
   customStyle,
 }: CTAButtonProps) {
+  const base =
+    "flex items-center justify-center gap-2 px-8 py-4 min-w-[200px] transition-all duration-300 ease-in-out";
+
   if (isLink) {
     return (
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`flex items-center px-8 py-4 min-w-[215px] justify-center ${customStyle}  transition-all duration-300 ease-in-out `}
+        className={`${base} ${customStyle}`}
       >
-        <span className="block">{action} </span>
-        <span className="block">{icon}</span>
+        <span>{action}</span>
+        <span className="flex items-center">{icon}</span>
       </a>
     );
   }
 
   return (
-    <Link
-      href={`${to}`}
-      className={`flex items-center px-8 py-4 gap-2 transition-all duration-300 ease-in-out ${customStyle}`}
-    >
-      <span className="block">{action}</span>
-      <span className="block">{icon}</span>
+    <Link href={`${to}`} className={`${base} ${customStyle}`}>
+      <span>{action}</span>
+      <span className="flex items-center">{icon}</span>
     </Link>
   );
 }

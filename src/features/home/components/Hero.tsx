@@ -30,16 +30,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="px-4 relative min-h-screen max-lg:top-17.5 sm:max-md:top-27.75 pt-4 text-center font-extrabold z-10 rounded-xl md:flex md:gap-15 justify-evenly items-center">
+    <section className="relative min-h-screen max-lg:top-17.5 sm:max-md:top-27.75 flex flex-col md:flex-row items-center justify-center md:justify-evenly gap-12 md:gap-16 px-4 pt-4 text-center font-extrabold z-10">
       {/* hero img */}
-      <div className="relative group w-64 h-64 sm:w-72 sm:h-72 lg:w-98 lg:h-98 max-md:mx-auto my-auto">
-        {/* Decorative Background Ring - Now inherits parent size */}
-        <div className="absolute -inset-2 bg-linear-to-tr from-sky-400 to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+      <div className="group relative my-auto h-64 w-64 sm:h-72 sm:w-72 lg:h-98 lg:w-98">
+        <div className="absolute -inset-2 rounded-full bg-linear-to-tr from-sky-400 to-indigo-500 opacity-25 blur transition duration-1000 group-hover:opacity-50" />
 
-        {/* Image Container - Fills the parent exactly */}
-        <div className="relative w-full h-full overflow-hidden rounded-full border-4 border-white shadow-2xl">
+        <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-2xl">
           <Image
-            src={"/hero2.webp"}
+            src="/hero2.webp"
             fill
             alt="Ali Abd-Elbagi"
             loading="eager"
@@ -51,57 +49,52 @@ export default function Hero() {
       </div>
 
       {/* Hero text */}
-      <div className="md:w-1/2 @container md:text-start md:flex md:justify-center md:flex-col">
-        <h2 className="text-p-color max-md:my-5 text-4xl sm:text-5xl font-bold">
+      <div className="@container flex flex-col md:w-1/2 md:justify-center md:text-start">
+        <span className="mb-3 inline-block w-fit text-sm font-semibold uppercase tracking-widest text-sky-500 max-md:mx-auto">
           {t("hero.hi")} 🙋‍♂️
-        </h2>
+        </span>
 
-        <h3 className="text-p-color text-fluid font-bold my-5">
-          <TypeWritter
-            texts={t(`hero.heading`)}
-            typingSpeed={100}
-            keyy={locale}
-          />
-        </h3>
+        <h1 className="my-2 text-fluid font-bold text-p-color">
+          <TypeWritter texts={t("hero.heading")} typingSpeed={100} keyy={locale} />
+        </h1>
 
-        <p className="font-extrabold mb-3 text-lg sm:text-xl text-s-color">
+        <p className="mb-3 text-lg font-extrabold text-sky-500 sm:text-xl">
           {t("hero.job")}
         </p>
 
-        <p className="text-s-color font-normal text-lg text-balance sm:text-xl sm:w-1/2 md:w-fit lg:w-[40ch] max-md:mx-auto">
+        <p className="text-balance text-lg font-normal text-s-color max-md:mx-auto sm:w-1/2 sm:text-xl md:w-fit lg:w-[40ch]">
           {t("hero.desc")}
         </p>
 
         {/* Buttons */}
-        <div className="flex @xs:flex-wrap @xs:justify-center w-fit max-lg:mx-auto gap-5 mt-8">
+        <div className="mt-8 flex w-fit max-lg:mx-auto gap-4 @xs:flex-wrap @xs:justify-center">
           <CTAButton
-            isLink={true}
+            isLink
             href="https://www.linkedin.com/in/ali-abdelbagi-02313b223/"
-            icon={
-              <FaLinkedin className="self-center ms-2" size={25} color="#eee" />
-            }
+            icon={<FaLinkedin size={20} />}
             action={t("hero.btnText")}
-            customStyle="bg-p-color hover:bg-s-color max-md:mx-auto rounded-full text-white border border-sky-400 md:text-lg"
+            customStyle="rounded-full bg-p-color text-white border border-sky-400 hover:bg-s-color md:text-lg"
           />
           <CTAButton
             isLink={false}
-            to={`/blog`}
+            to="/blog"
             action={t("hero.blogBtn")}
-            icon={
-              <MdArticle className="self-center ms-2" size={25} color="#eee" />
-            }
-            customStyle="max-md:mx-auto rounded-full bg-s-color text-white hover:bg-s-color/80 md:text-lg"
+            icon={<MdArticle size={20} />}
+            customStyle="rounded-full bg-transparent text-p-color border-2 border-p-color/20 hover:bg-p-color/5 md:text-lg"
           />
         </div>
-
-        {/* Next Section Scroll Indicator */}
-        {showAboutMeScrollDown && (
-          <div className="hidden lg:flex items-center px-5 py-3 absolute bottom-0 rounded-full bg-s-color/50 text-white animate-bounce w-fit">
-            {t("aboutMe.title")}{" "}
-            <HiChevronDoubleDown color="#223549" className="ms-2" />
-          </div>
-        )}
       </div>
+
+      {/* Next Section Scroll Indicator */}
+      {showAboutMeScrollDown && (
+        <a
+          href="#about"
+          className="absolute bottom-6 hidden items-center gap-1.5 rounded-full border border-p-color/10 bg-white px-4 py-2 text-sm font-semibold text-p-color shadow-sm transition-colors duration-300 hover:border-sky-400/50 lg:flex animate-bounce"
+        >
+          {t("aboutMe.title")}
+          <HiChevronDoubleDown className="text-sky-500" />
+        </a>
+      )}
     </section>
   );
 }

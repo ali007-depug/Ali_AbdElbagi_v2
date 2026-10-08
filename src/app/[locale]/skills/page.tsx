@@ -62,12 +62,11 @@ export default async function MySkills({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
   return (
-    <section className="px-dyp py-5 md:py  relative top-19 sm:max-md:top-27.75 bg-p-color">
+    <section className="px-dyp py-16 relative top-19 sm:max-md:top-27.75 bg-p-color">
       <SkillHeader locale={locale} />
-      {/* skill badges */}
-      <SkillsBadges isLearntSkills={true} bg={"bg-sky-900"} />
-      {/* Next Level */}
+      <SkillsBadges isLearntSkills={true} bg="bg-sky-900" />
       <NextLevel locale={locale} />
     </section>
   );

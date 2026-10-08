@@ -62,9 +62,8 @@ export default async function MyWorks({
 }) {
   const { locale } = await params;
   return (
-    <section className="px-dyp py-5 md:py  relative top-19 sm:max-md:top-27.75">
+    <section className="px-dyp py-16 relative top-19 sm:max-md:top-27.75">
       <WorksHeader locale={locale} />
-      {/* Projects List */}
       <ProjectsTaps />
     </section>
   );

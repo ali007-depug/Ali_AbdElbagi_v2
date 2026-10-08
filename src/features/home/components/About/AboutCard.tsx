@@ -2,21 +2,23 @@ interface AboutCardProps {
   cardDetails: string;
   icon: React.ReactNode;
 }
+
 export default function AboutCard({ cardDetails, icon }: AboutCardProps) {
   return (
     <div
       className="
-        flex flex-col @max-sm:gap-3 @sm:gap-5 items-center text-center 
-        @max-sm:p-2 @sm:p-6 rounded-xl bg-white backdrop-blur 
-        border border-sky-500  
-        shadow-sm transition-all duration-300
-        hover:shadow-lg hover:-translate-y-1 
-        hover:border-s-color @max-sm:min-h-30 @sm:min-h-50  justify-center
+        flex flex-col items-center justify-center gap-3 @sm:gap-4 text-center
+        rounded-2xl border border-white/10 bg-white/5
+        p-4 @sm:p-6 @max-sm:min-h-30 @sm:min-h-40
+        backdrop-blur transition-all duration-300
+        hover:-translate-y-1 hover:border-sky-400/50 hover:bg-white/10
       "
     >
-      <div className="">{icon}</div>
+      <div className="flex size-11 items-center justify-center rounded-full bg-sky-400/10 text-sky-400">
+        {icon}
+      </div>
 
-      <p className="@max-sm:text-sm @sm:text-base text-center text-p-color">
+      <p className="text-sm @sm:text-base font-medium text-white/90">
         {cardDetails}
       </p>
     </div>

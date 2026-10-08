@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Fragment } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -7,100 +7,69 @@ interface SkillsBadgesProps {
   isLearntSkills?: boolean;
   bg?: string;
 }
+
+const skills = {
+  html: "html.webp",
+  css: "css3.webp",
+  js: "js.webp",
+  sass: "sass.webp",
+  tailwind: "tailwindCss.webp",
+  git: "git.webp",
+  github: "github.webp",
+  react: "react.webp",
+  vite: "vite.svg",
+  firebase: "firebase.webp",
+  linux: "linux.webp",
+  cli: "cli.webp",
+  typeScript: "typeScript.webp",
+  nextjs: "nextJs.webp",
+};
+
+const upComingSkills = {
+  nodeJs: "nodejs.webp",
+  expressJs: "express.webp",
+  mongoDb: "mongoDB.webp",
+};
+
 export default function SkillsBadges({
   isLearntSkills = true,
   bg = "bg-sky-900",
-}:SkillsBadgesProps) {
-  const skills = {
-    html: "html.webp",
-    css: "css3.webp",
-    js: "js.webp",
-    sass: "sass.webp",
-    tailwind: "tailwindCss.webp",
-    git: "git.webp",
-    github: "github.webp",
-    react: "react.webp",
-    vite: "vite.svg",
-    firebase: "firebase.webp",
-    linux: "linux.webp",
-    cli: "cli.webp",
-    typeScript: "typeScript.webp",
-    nextjs: "nextJs.webp",
-
-  };
-  
-  const upComingSkills = {
-    nodeJs: "nodejs.webp",
-    expressJs: "express.webp",
-    mongoDb: "mongoDB.webp",
-  };
+}: SkillsBadgesProps) {
+  const list = isLearntSkills ? skills : upComingSkills;
 
   return (
     <motion.div
-      className={`grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  gap-6 pb-15`}
+      className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: 0.15,
-          },
-        },
-      }}
+      variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
     >
-      {/* render learnt skill or upcoming skills "the ones that i want to learn in future" */}
-      {isLearntSkills
-        ? Object.entries(skills ?? {}).map(([tech, iconSrc], index) => (
-            <Fragment key={index}>
-              <motion.div
-                className={`flex flex-col gap-4 items-center rounded-md shadow-2xl ${bg} `}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                <Image
-                  src={`/${iconSrc}`}
-                  alt={tech}
-                  title={tech}
-                  className="w-10 mt-2.5"
-                  loading="lazy"
-                  width={100}
-                  height={100}
-                />
-                <h1 className="uppercase text-white font-semibold mb-2 tracking-widest">
-                  {tech}
-                </h1>
-              </motion.div>
-            </Fragment>
-          ))
-        : Object.entries(upComingSkills ?? {}).map(([tech, iconSrc], index) => (
-            <Fragment key={index}>
-              <motion.div
-                className={`flex flex-col gap-4 items-center rounded-md shadow-2xl ${bg} `}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                <Image
-                  src={`/${iconSrc}`}
-                  alt={tech}
-                  title={tech}
-                  className="w-10 mt-2.5"
-                  loading="lazy"
-                  width={100}
-                  height={100}
-                />
-                <h1 className="uppercase text-white font-semibold mb-2 tracking-widest">
-                  {tech}
-                </h1>
-              </motion.div>
-            </Fragment>
-          ))}
+      {Object.entries(list).map(([tech, iconSrc]) => (
+        <Fragment key={tech}>
+          <motion.div
+            className={`group flex items-center gap-3 rounded-xl border border-white/10 px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/50 ${bg}`}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <Image
+              src={`/${iconSrc}`}
+              alt={tech}
+              title={tech}
+              className="size-8 shrink-0 transition-transform duration-300 group-hover:scale-110"
+              loading="lazy"
+              width={32}
+              height={32}
+            />
+            <span className="truncate text-sm font-semibold uppercase tracking-wider text-white">
+              {tech}
+            </span>
+          </motion.div>
+        </Fragment>
+      ))}
     </motion.div>
   );
 }

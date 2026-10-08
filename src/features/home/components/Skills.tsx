@@ -3,33 +3,41 @@ import SkillsBadges from "@/features/skills/SkillsBadges";
 import { Link } from "@/../i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-import { FaArrowCircleRight } from "react-icons/fa";
+import { TbArrowRight } from "react-icons/tb";
 
 export default function Skills() {
   const t = useTranslations();
   const params = useParams();
+  const isRtl = params.locale !== "en-US";
+
   return (
     <div
-      className="px-dyp relative top-[76px] sm:max-md:top-[121px] mt-10 py-10 bg-p-color"
+      className="px-dyp relative top-[76px] sm:max-md:top-[121px] mt-10 py-16 bg-p-color"
       id="skills"
     >
-      <h1 className="text-center font-bold text-dyTitle text-white mb-5">
-        {t("mySkills.title")}
-      </h1>
-      {/* skill badges  */}
+      {/* section header */}
+      <div className="mx-auto mb-10 max-w-2xl text-center">
+        <span className="inline-block rounded-full bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-400">
+          {t("mySkills.eyebrow")}
+        </span>
+        <h1 className="mt-3 text-dyTitle font-bold text-white">{t("mySkills.title")}</h1>
+      </div>
+
+      {/* skill badges */}
       <SkillsBadges />
 
-      <Link
-        href={"/skills"}
-        className="flex items-center gap-2 w-fit mx-auto mt-10 md:absolute md:end-10 start-10 md:bottom-5 p-5 bg-s-color text-white font-bold rounded cursor-pointer hover:bg-s-color/40 hover:text-bg-color transition-all duration-300 ease-in-out"
-      >
-        {t("mySkills.btnNextLearning")}{" "}
-        {params.locale === "en-US" ? (
-          <FaArrowCircleRight />
-        ) : (
-          <FaArrowCircleRight className="rotate-180" />
-        )}
-      </Link>
+      {/* view more */}
+      <div className="mt-12 flex justify-center">
+        <Link
+          href="/skills"
+          className="group flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-p-color transition-colors duration-300 hover:bg-sky-400 hover:text-white"
+        >
+          {t("mySkills.btnNextLearning")}
+          <TbArrowRight
+            className={`transition-transform duration-300 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`}
+          />
+        </Link>
+      </div>
     </div>
   );
 }

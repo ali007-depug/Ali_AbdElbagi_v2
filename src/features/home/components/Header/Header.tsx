@@ -1,84 +1,66 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import Nav from "./HeaderNav";
 import { Link } from "@/../i18n/navigation";
 import Image from "next/image";
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(false);
-  const  t  = useTranslations();
+  const [hideHeader, setHideHeader] = useState(false);
+  const t = useTranslations();
 
   function toggleMenu() {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((open) => !open);
   }
 
   useEffect(() => {
-    let lastScrollY = window.scrollY; // current scroll value
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
-      // 400 > 300 & 400
       if (window.scrollY > lastScrollY && window.scrollY > 100) {
-        // Scrolling DOWN and past 400
-        setShowHeader(true);
+        setHideHeader(true);
       } else if (window.scrollY < lastScrollY) {
-        // Scrolling UP
-        setShowHeader(false);
+        setHideHeader(false);
       }
       lastScrollY = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
-    // // clean-up
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 z-20 transition-opacity duration-300 ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-20 bg-black/60 transition-opacity duration-300 ${
+          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!isMenuOpen}
-      ></div>
-      {/* === End overlay === */}
+      />
 
-      {/* header  */}
       <header
-        className={`flex fixed top-0 w-full bg-white items-center justify-between py-4 px-5 md:px-10 z-30 transition-discrete transition-all duration-200 ${
-          showHeader ? "opacity-0 invisible" : "opacity-100 visible"
-        } `}
+        className={`fixed top-0 z-30 flex w-full items-center justify-between border-b border-p-color/5 bg-white/90 px-5 py-3 backdrop-blur-sm transition-all duration-200 md:px-10 ${
+          hideHeader ? "invisible -translate-y-full opacity-0" : "visible translate-y-0 opacity-100"
+        }`}
       >
-        {/* avatar + info  */}
-        <div className="header__avatarWithInfo md:w-1/3">
-          {/* avatar */}
-          <Link href="/" className="flex items-center gap-3 ">
+        <div className="md:w-1/3">
+          <Link href="/" className="flex items-center gap-3">
             <Image
-              className="size-10 object-cover rounded-full"
+              className="size-10 rounded-full object-cover ring-2 ring-sky-400/30"
               src="/me11.webp"
-              alt={t(`header.avatarAlt`)}
+              alt={t("header.avatarAlt")}
               width={50}
               height={50}
             />
-            {/* info */}
-            <div className="header__info text-p-color">
-              <h2 className={`text-base font-bold sm:text-lg`}>
-                {t(`header.name`)}
-              </h2>
-              <p className="text-xs font-semiboldbold">
-                {t(`header.jobTitle`)}
-              </p>
+            <div className="text-p-color">
+              <h2 className="text-base font-bold sm:text-lg">{t("header.name")}</h2>
+              <p className="text-xs font-semibold text-s-color">{t("header.jobTitle")}</p>
             </div>
           </Link>
         </div>
-        {/* === End avatar + info === */}
 
-        {/*==== Nav ====== */}
         <Nav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        {/* === End nav === */}
       </header>
-      {/* === End header === */}
     </>
   );
 }
-

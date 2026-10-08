@@ -1,10 +1,15 @@
 import ChangeLangButton from "./LangButton";
-import { IoClose, IoMenu } from "react-icons/io5";
 import { Link, usePathname } from "@/../i18n/navigation";
 import { useTranslations } from "next-intl";
-import { HomeIcon, InfoIcon, WorkflowIcon } from "lucide-react";
-import { GiSkills } from "react-icons/gi";
-import { GrBlog } from "react-icons/gr";
+import {
+  HomeIcon,
+  InfoIcon,
+  BriefcaseIcon,
+  SparklesIcon,
+  NewspaperIcon,
+  MenuIcon,
+  XIcon,
+} from "lucide-react";
 
 interface NavProp {
   isMenuOpen: boolean;
@@ -12,23 +17,23 @@ interface NavProp {
 }
 
 const navLinks = [
-  { id: 0, link: "home", icon: <HomeIcon size={15}/> },
-  { id: 1, link: "about",icon: <InfoIcon size={15}/> },
-  { id: 2, link: "works", icon:<WorkflowIcon size={15}/> },
-  { id: 3, link: "skills" , icon : <GiSkills size={15}/>},
-  { id: 4, link: "blog" , icon : <GrBlog size={15}/>},
+  { id: 0, link: "home", icon: <HomeIcon size={15} /> },
+  { id: 1, link: "about", icon: <InfoIcon size={15} /> },
+  { id: 2, link: "works", icon: <BriefcaseIcon size={15} /> },
+  { id: 3, link: "skills", icon: <SparklesIcon size={15} /> },
+  { id: 4, link: "blog", icon: <NewspaperIcon size={15} /> },
 ];
 
 export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
   const pathname = usePathname();
-
   const t = useTranslations();
+
   const links = navLinks.map((link) => {
     const isActive =
       link.link === "home"
         ? pathname === "/"
         : link.link === "blog"
-          ? pathname.startsWith(`/blog`)
+          ? pathname.startsWith("/blog")
           : pathname.startsWith(`/${link.link}`);
 
     const to = link.link === "home" ? "/" : `/${link.link}`;
@@ -38,14 +43,12 @@ export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
         <Link
           href={to}
           onClick={isMenuOpen ? toggleMenu : undefined}
-          className={`flex gap-1 min-w-fit transition-all duration-100 ease-in-out ${
-            isActive ? "border-b-p-color border-b-[3px]" : ""
+          className={`flex min-w-fit items-center gap-2 transition-colors duration-200 ${
+            isActive ? "text-sky-500" : "text-p-color hover:text-sky-500"
           }`}
         >
-          <div className="flex gap-2 items-center">
-
-         {link.icon} {t(`header.menu.${link.link}`)} 
-          </div>
+          {link.icon}
+          {t(`header.menu.${link.link}`)}
         </Link>
       </li>
     );
@@ -53,30 +56,26 @@ export default function Nav({ isMenuOpen, toggleMenu }: NavProp) {
 
   return (
     <nav aria-label="mainNav">
-      {/* show hamburger menu on the mobile screen */}
       <button
         onClick={toggleMenu}
-        className="sm:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-p-color cursor-pointer"
+        className="rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-p-color sm:hidden"
         aria-expanded={isMenuOpen}
         aria-controls="mobileMenu"
-        aria-label={
-          isMenuOpen ? t("header.aria.closeMenu") : t("header.aria.openMenu")
-        }
+        aria-label={isMenuOpen ? t("header.aria.closeMenu") : t("header.aria.openMenu")}
       >
-        {isMenuOpen ? <IoClose size={25} /> : <IoMenu size={25} />}
+        {isMenuOpen ? <XIcon size={22} /> : <MenuIcon size={22} />}
       </button>
 
       <ul
         id={isMenuOpen ? "mobileMenu" : "desktopMenu"}
         className={
           isMenuOpen
-            ? "flex flex-col justify-center items-center absolute right-0 mt-4 w-full text-center bg-s-color min-h-90 [&_li]:w-fit [&_a]:px-4 [&_a]:py-2 [&_a]:min-w-[90px] [&_a]:inline-block [&_a]:bg-bg-color [&_a]:text-p-color [&_a]:my-4 [&_a]:rounded-[5px] [&_a]:capitalize [&_a]:font-bold [&_a]:focus:outline-none [&_a]:focus:ring-2 [&_a]:focus:ring-offset-2 [&_a]:focus:ring-white pb-3"
-            : "hidden sm:flex sm:flex-wrap sm:justify-center space-x-2  [&_li]:w-fit  [&_a]:px-4 [&_a]:py-2  [&_a]:inline-block  [&_a]:capitalize [&_a]:font-bold [&_a]:text-p-color [&_a]:text-base  [&_a]:hover:border-b-[3px] [&_a]:hover:border-s-color"
+            ? "absolute end-0 mt-4 flex min-h-90 w-full flex-col items-center justify-center gap-3 bg-white text-center pb-4 shadow-lg [&_a]:inline-flex [&_a]:min-w-[110px] [&_a]:justify-center [&_a]:rounded-full [&_a]:bg-p-color/5 [&_a]:px-4 [&_a]:py-2 [&_a]:font-bold [&_a]:capitalize [&_a]:text-p-color"
+            : "hidden sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-6 [&_a]:font-bold [&_a]:capitalize"
         }
       >
         {links}
-        {/* change lang buttons wrapper */}
-        <div className={`flex gap-2 `}>
+        <div className="flex gap-2">
           <ChangeLangButton language="en-US" />
           <ChangeLangButton language="ar" />
         </div>

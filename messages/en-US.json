@@ -51,6 +51,7 @@
     }
   },
   "mySkills": {
+    "eyebrow": "Technologies I Use",
     "title": "My Skills",
     "btnNextLearning": "New Tech I'm Learning"
   },
@@ -74,7 +75,9 @@
       }
     },
     "about": {
+      "eyebrow": "Who I Am",
       "title": "About Me",
+      "subtitle": "Get to know me",
       "imageAlt": "Personal photo of Ali AbdElbagi",
       "imageDate": "on: 23-7-2022",
       "story": {
@@ -145,6 +148,7 @@
   },
   "worksPage": {
     "works": {
+      "eyebrow": "Projects I've Worked On",
       "title": "My Works",
       "description": "Here are some of the projects I've worked on — including personal, freelance, and frontend mentor challenges.",
       "filters": {
@@ -157,6 +161,7 @@
   },
   "skillsPage": {
     "title": "My Skills",
+    "eyebrow": "Technologies I Use",
     "description": "I’ve worked with a variety of tools and technologies in real-world projects. Here’s a snapshot of what I use to design, build, and deploy frontend applications.",
     "nextLevelTitle": "Next-Level Tools I’m Diving Into"
   },
