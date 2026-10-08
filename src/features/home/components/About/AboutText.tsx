@@ -30,7 +30,7 @@ export default function AboutText() {
           to="/about"
           action={t("aboutMe.btnStory")}
           icon={<TbArrowRight className={isRtl ? "rotate-180" : ""} />}
-          customStyle="rounded-full mt-10 w-fit bg-white text-p-color hover:bg-sky-500 hover:text-white border-2 border-sky-400 cursor-pointer font-bold md:text-xl transition-all duration-200 ease-linear"
+          customStyle="rounded-full mt-10 w-fit bg-white text-p-color hover:bg-sky-500 hover:text-white border-2 border-sky-400 cursor-pointer font-bold md:text-xl max-md:mx-auto transition-all duration-200 ease-linear"
         />
       </div>
     </div>

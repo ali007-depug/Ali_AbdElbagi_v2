@@ -48,7 +48,7 @@ export default function SkillsBadges({
       {Object.entries(list).map(([tech, iconSrc]) => (
         <Fragment key={tech}>
           <motion.div
-            className={`group flex items-center gap-3 rounded-xl border border-white/10 px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/50 ${bg}`}
+            className={`group flex justify-center items-center gap-3 rounded-xl border border-white/10 px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/50 ${bg}`}
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },

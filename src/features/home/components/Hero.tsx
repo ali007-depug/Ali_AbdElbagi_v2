@@ -30,31 +30,31 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen max-lg:top-17.5 sm:max-md:top-27.75 flex flex-col md:flex-row items-center justify-center md:justify-evenly gap-12 md:gap-16 px-4 pt-4 text-center font-extrabold z-10">
+    <section className="relative flex md:min-h-[calc(100vh-4rem)] md:w-full max-w-full flex-col items-center justify-center gap-8 overflow-x-clip px-4 pt-20 pb-12 text-center font-extrabold z-10 md:flex-row md:justify-evenly md:gap-12 md:pt-24 md:text-start">
       {/* hero img */}
-      <div className="group relative my-auto h-64 w-64 sm:h-72 sm:w-72 lg:h-98 lg:w-98">
+      <div className="group relative my-auto aspect-square w-52 min-w-0 sm:w-64 lg:w-80 max-w-[80vw]">
         <div className="absolute -inset-2 rounded-full bg-linear-to-tr from-sky-400 to-indigo-500 opacity-25 blur transition duration-1000 group-hover:opacity-50" />
 
         <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-2xl">
           <Image
             src="/hero2.webp"
             fill
-            alt="Ali Abd-Elbagi"
+            alt="Ali AbdElbagi"
             loading="eager"
             priority
-            sizes="(max-width: 768px) 256px, (max-width: 1024px) 288px, 392px"
+            sizes="(max-width: 640px) 208px, (max-width: 1024px) 256px, 320px"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
           />
         </div>
       </div>
 
       {/* Hero text */}
-      <div className="@container flex flex-col md:w-1/2 md:justify-center md:text-start">
-        <span className="mb-3 inline-block w-fit text-sm font-semibold uppercase tracking-widest text-sky-500 max-md:mx-auto">
+      <div className="@container flex min-w-70 flex-col items-center max-w-full md:w-1/2 md:items-start md:justify-center">
+        <h1 className="mb-3 text-sm font-semibold uppercase tracking-widest text-sky-500">
           {t("hero.hi")} 🙋‍♂️
-        </span>
+        </h1>
 
-        <h1 className="my-2 text-fluid font-bold text-p-color">
+        <h1 className="my-2 max-w-full text-balance text-2xl font-bold text-p-color sm:text-3xl md:text-4xl lg:text-5xl">
           <TypeWritter texts={t("hero.heading")} typingSpeed={100} keyy={locale} />
         </h1>
 
@@ -62,25 +62,25 @@ export default function Hero() {
           {t("hero.job")}
         </p>
 
-        <p className="text-balance text-lg font-normal text-s-color max-md:mx-auto sm:w-1/2 sm:text-xl md:w-fit lg:w-[40ch]">
+        <p className="max-w-full text-balance text-base font-normal text-s-color sm:text-lg md:max-w-prose">
           {t("hero.desc")}
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex w-fit max-lg:mx-auto gap-4 @xs:flex-wrap @xs:justify-center">
+        <div className="mt-8 flex w-full max-w-xs flex-col sm:flex-row sm:max-w-md sm:justify-center md:justify-start gap-3">
           <CTAButton
             isLink
             href="https://www.linkedin.com/in/ali-abdelbagi-02313b223/"
             icon={<FaLinkedin size={20} />}
             action={t("hero.btnText")}
-            customStyle="rounded-full bg-p-color text-white border border-sky-400 hover:bg-s-color md:text-lg"
+            customStyle="w-full sm:w-auto justify-center rounded-full bg-p-color text-white border border-sky-400 hover:bg-s-color text-base md:text-lg"
           />
           <CTAButton
             isLink={false}
             to="/blog"
             action={t("hero.blogBtn")}
             icon={<MdArticle size={20} />}
-            customStyle="rounded-full bg-transparent text-p-color border-2 border-p-color/20 hover:bg-p-color/5 md:text-lg"
+            customStyle="w-full sm:w-auto justify-center rounded-full bg-transparent text-p-color border-2 border-p-color/20 hover:bg-p-color/5 text-base md:text-lg"
           />
         </div>
       </div>
