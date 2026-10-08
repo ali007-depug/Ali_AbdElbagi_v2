@@ -1,13 +1,13 @@
-import { Skills,Works,About,Hero } from "@/features/home";
+import { Skills,Works,About,Hero,BlogOnHome } from "@/features/home";
 
-// type Props = {
-//   params: Promise<{
-//     locale: string;
-//   }>;
-// };
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
 
-export default async function Home() {
-  // const { locale } = await (params);
+export default async function Home({ params }: Props) {
+  const { locale } = await (params);
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default async function Home() {
       <About />
       <Works />
       <Skills />
-      {/* <BlogOnHome locale={locale} /> */}
+      <BlogOnHome locale={locale} />
     </div>
   );
 }

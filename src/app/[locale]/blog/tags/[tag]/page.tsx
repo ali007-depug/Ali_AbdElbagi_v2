@@ -24,6 +24,7 @@ export default async function page({
       {/* Back to all posts button */}
       <BackButton
         backTo={`/blog`}
+        locale={locale}
         btnText={t("backToAllPosts")}
         icon={<TbArrowBack />}
         customStyle="mx-auto text-bold text-base md:text-lg text-p-color hover:text-sky-500"

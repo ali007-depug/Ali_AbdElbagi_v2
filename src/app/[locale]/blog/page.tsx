@@ -18,28 +18,21 @@ export default async function Page({
   const { locale } = await params;
 
   return (
-    <section className="mb-10 px-dyp py-5  relative top-19 sm:max-md:top-27.75">
+    <section className="mb-10 px-dyp py-5 relative top-19 sm:max-md:top-27.75">
       <Suspense fallback={<p>Loading...</p>}>
         <BlogHeader locale={locale} />
       </Suspense>
-      {/* post + tags Wrapper */}
-      <div className="flex max-lg:flex-col px- gap-5">
-        {/*posts section wrapper */}
-        <article className="space-y-4 mt-4 w-full basis-[80%] min-h-[80dvh] text-center bg-p-color sm:px-3 sm:py-2 rounded-lg  max-lg:order-2">
-          <Suspense fallback={<PostsSkeleton />}>
-            {/* Render all blog posts */}
-            <PostWrapper locale={locale} />
-          </Suspense>
-        </article>
 
-        {/* Tags sidebar */}
-        <TagsWrapper locale={locale} />
-      </div>
+      <TagsWrapper locale={locale} />
+
+      <article className="mt-6 min-h-[80dvh] w-full bg-p-color  p-5 rounded-lg text-center">
+        <Suspense fallback={<PostsSkeleton />}>
+          <PostWrapper locale={locale} />
+        </Suspense>
+      </article>
     </section>
   );
 }
-
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const isArabic = locale === "ar";

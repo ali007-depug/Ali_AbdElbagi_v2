@@ -18,7 +18,7 @@ export default function RootLayout({
         content="CCE2CTQbIIKS011HcE3JI_wflaLZGIwIWwh52Lhg2Kc"
       />
 
-      <body className={cairo + " antialiased"}>{children}
+      <body className={cairo + "antialiased scroll-smooth" }>{children}
         <MicrosoftClarity />
       </body>
     </html>
