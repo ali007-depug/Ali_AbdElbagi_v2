@@ -15,23 +15,24 @@ export default function Posts({ data }: { data: BlogPost[] }) {
   return (
     <div className="space-y-8">
       {/* featured post */}
-      <Link
-        href={`/blog/${featured.fields.slug}`}
-        locale={featured.sys.locale}
-        className="group relative flex flex-col overflow-hidden rounded-2xl bg-p-color text-start md:flex-row md:items-stretch"
-      >
-        <div className="relative aspect-video rounded-lg w-full overflow-hidden md:aspect-auto md:w-[45%]">
-          {featuredImage && (
-            <Image
-              src={`https:${featuredImage}`}
-              alt={featured.fields.title}
-              fill
-              sizes="(min-width: 768px) 45vw, 100vw"
-              className="object-fit transition-transform duration-500 group-hover:scale-105"
-              priority
-            />
-          )}
-        </div>
+  <Link
+  href={`/blog/${featured.fields.slug}`}
+  locale={featured.sys.locale}
+  className="group relative flex flex-col overflow-hidden rounded-2xl bg-p-color text-start md:flex-row md:items-center md:p-4 gap-4 md:h-52 lg:h-auto"
+>
+  {/* Left: Image Container */}
+  <div className="relative w-full aspect-1200/660  overflow-hidden rounded-xl md:w-[45%] shrink-0 bg-[#2e5b41]">
+    {featuredImage && (
+      <Image
+        src={`https:${featuredImage}`}
+        alt={featured.fields.title}
+        fill
+        sizes="(min-width: 768px) 45vw, 100vw"
+        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+        priority
+      />
+    )}
+  </div>
         <div className="flex flex-1 flex-col justify-center gap-3 p-6 md:p-8">
           <span className="w-fit rounded-full bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-400">
             Latest
